@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Nirvana Competitive Analysis Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .vertical-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .vertical-btn {
+            padding: 8px 16px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .vertical-btn:hover, .vertical-btn.active {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .competitor-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .competitor-item {
+            background: #f8f9fa;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .competitor-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .competitor-name {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+
+        .competitor-location {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin: 5px 0;
+        }
+
+        .competitor-products {
+            color: #34495e;
+            font-size: 0.9em;
+            margin: 5px 0;
+        }
+
+        .competitor-link {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 5px 12px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.8em;
+            transition: background 0.3s ease;
+        }
+
+        .competitor-link:hover {
+            background: #2980b9;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 350px;
+            margin: 20px 0;
+        }
+
+        .swot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .swot-section {
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .strengths { background: linear-gradient(135deg, #27ae60, #2ecc71); }
+        .weaknesses { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .opportunities { background: linear-gradient(135deg, #f39c12, #e67e22); }
+        .threats { background: linear-gradient(135deg, #8e44ad, #9b59b6); }
+
+        .swot-section h3 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .swot-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .swot-section li {
+            margin: 8px 0;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        .recommendations {
+            display: grid;
+            gap: 20px;
+        }
+
+        .recommendation {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .recommendation h3 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .priority-high { border-left: 5px solid #e74c3c; }
+        .priority-medium { border-left: 5px solid #f39c12; }
+
+        .hidden {
+            display: none;
+        }
+
+        .loading {
+            text-align: center;
+            color: #7f8c8d;
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Digital Nirvana Competitive Analysis</h1>
+            <p class="subtitle">Strategic Market Intelligence Dashboard • January 2025</p>
+        </header>
+
+        <div class="dashboard-grid">
+            <!-- Verticals Overview -->
+            <div class="card">
+                <h2>📊 Market Verticals</h2>
+                <div class="vertical-nav">
+                    <button class="vertical-btn active" onclick="showVertical('MonitorIQ_BroadcastCompliance')">MonitorIQ</button>
+                    <button class="vertical-btn" onclick="showVertical('MetadataIQ_AIMetadata')">MetadataIQ</button>
+                    <button class="vertical-btn" onclick="showVertical('SubsNDubs_CaptioningLocalization')">SubsNDubs</button>
+                    <button class="vertical-btn" onclick="showVertical('MediaEnrichment_ContentIntelligence')">Media Enrichment</button>
+                    <button class="vertical-btn" onclick="showVertical('InvestmentResearch_FinancialData')">Investment Research</button>
+                    <button class="vertical-btn" onclick="showVertical('LearningManagement_Education')">LMS</button>
+                    <button class="vertical-btn" onclick="showVertical('CloudEngineering_DataIntelligence')">Cloud Engineering</button>
+                </div>
+                <div id="competitors-list" class="competitor-list">
+                    <div class="loading">Loading competitors...</div>
+                </div>
+            </div>
+
+            <!-- Competitive Matrix Chart -->
+            <div class="card">
+                <h2>⚔️ Competitive Matrix</h2>
+                <div class="chart-container">
+                    <canvas id="competitiveChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Market Share Visualization -->
+            <div class="card">
+                <h2>🎯 Market Position</h2>
+                <div class="chart-container">
+                    <canvas id="marketShareChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="card">
+                <h2>📈 Key Insights</h2>
+                <div id="keyMetrics">
+                    <div style="background: #3498db; color: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
+                        <h3>🏢 Total Competitors Analyzed</h3>
+                        <p style="font-size: 2em; margin: 5px 0;"><span id="totalCompetitors">0</span></p>
+                    </div>
+                    <div style="background: #27ae60; color: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
+                        <h3>🌍 Global Markets Covered</h3>
+                        <p style="font-size: 2em; margin: 5px 0;">7</p>
+                    </div>
+                    <div style="background: #f39c12; color: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
+                        <h3>🚀 Strategic Recommendations</h3>
+                        <p style="font-size: 2em; margin: 5px 0;">3</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SWOT Analysis -->
+        <div class="card">
+            <h2>🔍 SWOT Analysis - Digital Nirvana</h2>
+            <div class="swot-grid">
+                <div class="swot-section strengths">
+                    <h3>💪 Strengths</h3>
+                    <ul id="strengthsList"></ul>
+                </div>
+                <div class="swot-section weaknesses">
+                    <h3>⚠️ Weaknesses</h3>
+                    <ul id="weaknessesList"></ul>
+                </div>
+                <div class="swot-section opportunities">
+                    <h3>🌟 Opportunities</h3>
+                    <ul id="opportunitiesList"></ul>
+                </div>
+                <div class="swot-section threats">
+                    <h3>⚡ Threats</h3>
+                    <ul id="threatsList"></ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Strategic Recommendations -->
+        <div class="card">
+            <h2>💡 Strategic Recommendations</h2>
+            <div class="recommendations" id="recommendationsList"></div>
+        </div>
+    </div>
+
+    <script>
+        // Load the JSON data
+        let competitiveData = null;
+
+        // Load the complete JSON data from our analysis
+        const jsonData = {
+            "verticals": {
+                "MonitorIQ_BroadcastCompliance": {
+                    "description": "Broadcast compliance monitoring and logging solutions",
+                    "competitors": [
+                        {
+                            "company": "Telestream iQ",
+                            "headquarters": "Nevada City, CA",
+                            "website": "https://www.telestream.net/iq/",
+                            "products": ["Sentry", "Surveyor", "FOQUS Platform"],
+                            "strengths": ["Market leadership", "Proven track record", "Comprehensive monitoring solutions"]
+                        },
+                        {
+                            "company": "Rohde & Schwarz PRISMON",
+                            "headquarters": "Munich, Germany",
+                            "website": "https://www.rohde-schwarz.com/",
+                            "products": ["PRISMON", "PRISMON.cloud"],
+                            "strengths": ["Innovation leadership", "Cloud-native approach", "SMPTE ST2110 support"]
+                        },
+                        {
+                            "company": "Mediaproxy",
+                            "headquarters": "Belgium",
+                            "website": "https://www.mediaproxy.com/",
+                            "products": ["LogServer", "StreamMonitor"],
+                            "strengths": ["Strong customer base", "Volicon replacement expertise"]
+                        },
+                        {
+                            "company": "SnapStream (MoCo)",
+                            "headquarters": "Houston, TX",
+                            "website": "https://www.snapstream.com/",
+                            "products": ["MoCo"],
+                            "strengths": ["Volicon migration expertise", "Established customer base"]
+                        },
+                        {
+                            "company": "VELA",
+                            "headquarters": "United States",
+                            "website": "https://www.vela.com/",
+                            "products": ["24/7 Broadcast Compliance and Streaming Monitoring"],
+                            "strengths": ["Specialized focus", "Real-time capabilities"]
+                        }
+                    ]
+                },
+                "MetadataIQ_AIMetadata": {
+                    "description": "AI-driven metadata generation and content enrichment",
+                    "competitors": [
+                        {
+                            "company": "Twelve Labs",
+                            "headquarters": "San Francisco, CA",
+                            "website": "https://www.twelvelabs.io/",
+                            "products": ["Multimodal AI Platform", "Video Understanding API"],
+                            "strengths": ["Leading AI performance", "Multimodal approach", "Strong funding"]
+                        },
+                        {
+                            "company": "Clarifai",
+                            "headquarters": "Washington, DC",
+                            "website": "https://www.clarifai.com/",
+                            "products": ["Computer Vision Platform", "NLP Platform", "Audio Recognition"],
+                            "strengths": ["Proven track record", "Comprehensive platform", "Industry experience"]
+                        },
+                        {
+                            "company": "Google Cloud Video Intelligence",
+                            "headquarters": "Mountain View, CA",
+                            "website": "https://cloud.google.com/video-intelligence",
+                            "products": ["Video Intelligence API", "AutoML Video Intelligence"],
+                            "strengths": ["Google AI backing", "Scalability", "Integration capabilities"]
+                        },
+                        {
+                            "company": "Amazon Rekognition",
+                            "headquarters": "Seattle, WA",
+                            "website": "https://aws.amazon.com/rekognition/",
+                            "products": ["Rekognition Video", "Rekognition Image"],
+                            "strengths": ["AWS ecosystem", "Proven scalability", "Cost-effective"]
+                        },
+                        {
+                            "company": "Azure Video Indexer",
+                            "headquarters": "Redmond, WA",
+                            "website": "https://azure.microsoft.com/en-us/products/ai-video-indexer",
+                            "products": ["Video Indexer", "Media Services"],
+                            "strengths": ["Microsoft ecosystem", "Language capabilities", "Enterprise focus"]
+                        }
+                    ]
+                },
+                "SubsNDubs_CaptioningLocalization": {
+                    "description": "Captioning, subtitling, dubbing, and localization services",
+                    "competitors": [
+                        {
+                            "company": "3Play Media",
+                            "headquarters": "Boston, MA",
+                            "website": "https://www.3playmedia.com/",
+                            "products": ["Captioning", "Subtitling", "Audio Description", "Localization"],
+                            "strengths": ["High accuracy", "Compliance expertise", "Enterprise focus"]
+                        },
+                        {
+                            "company": "VITAC",
+                            "headquarters": "Canonsburg, PA",
+                            "website": "https://vitac.com/",
+                            "products": ["Live Captioning", "Post-Production Captioning", "Translation Services"],
+                            "strengths": ["Market leadership", "Live captioning expertise", "AI integration"]
+                        },
+                        {
+                            "company": "Rev",
+                            "headquarters": "San Francisco, CA",
+                            "website": "https://www.rev.com/",
+                            "products": ["Transcription", "Captioning", "Subtitles", "Translation"],
+                            "strengths": ["Accessibility", "Speed", "User-friendly platform"]
+                        },
+                        {
+                            "company": "Aberdeen Broadcast Services",
+                            "headquarters": "United Kingdom",
+                            "website": "https://www.aberdeenbroadcast.com/",
+                            "products": ["Closed Captioning", "Subtitling", "Translation", "Dubbing"],
+                            "strengths": ["International presence", "Language expertise", "Broadcasting focus"]
+                        }
+                    ]
+                },
+                "MediaEnrichment_ContentIntelligence": {
+                    "description": "Content intelligence, AI metadata, and media workflows",
+                    "competitors": [
+                        {
+                            "company": "Veritone",
+                            "headquarters": "Costa Mesa, CA",
+                            "website": "https://www.veritone.com/",
+                            "products": ["aiWARE Platform", "Digital Media Hub", "Workflow Solutions"],
+                            "strengths": ["Platform breadth", "Enterprise focus", "Ecosystem approach"]
+                        },
+                        {
+                            "company": "Valossa",
+                            "headquarters": "Finland",
+                            "website": "https://valossa.com/",
+                            "products": ["Video Recognition Service", "Content Intelligence Platform"],
+                            "strengths": ["Innovation leadership", "Technical expertise", "Market first-mover"]
+                        },
+                        {
+                            "company": "Moments Lab",
+                            "headquarters": "France",
+                            "website": "https://www.momentslab.com/",
+                            "products": ["AI Video Analysis", "Content Intelligence"],
+                            "strengths": ["Specialized focus", "Cloud-native approach"]
+                        }
+                    ]
+                },
+                "InvestmentResearch_FinancialData": {
+                    "description": "Investment research services and financial data provision",
+                    "competitors": [
+                        {
+                            "company": "Bloomberg Terminal",
+                            "headquarters": "New York, NY",
+                            "website": "https://www.bloomberg.com/professional/",
+                            "products": ["Bloomberg Terminal", "Bloomberg Professional"],
+                            "strengths": ["Market dominance", "Real-time data", "Industry standard"]
+                        },
+                        {
+                            "company": "Refinitiv (LSEG Workspace)",
+                            "headquarters": "London, UK",
+                            "website": "https://www.refinitiv.com/",
+                            "products": ["LSEG Workspace", "Eikon"],
+                            "strengths": ["Comprehensive platform", "Competitive pricing", "Global reach"]
+                        },
+                        {
+                            "company": "S&P Capital IQ",
+                            "headquarters": "New York, NY",
+                            "website": "https://www.spglobal.com/marketintelligence/",
+                            "products": ["Capital IQ Platform", "Market Intelligence"],
+                            "strengths": ["Data quality", "Investment banking focus", "Integration capabilities"]
+                        },
+                        {
+                            "company": "FactSet",
+                            "headquarters": "Norwalk, CT",
+                            "website": "https://www.factset.com/",
+                            "products": ["FactSet Workstation", "Analytics Suite"],
+                            "strengths": ["Value proposition", "Excel integration", "Customer service"]
+                        },
+                        {
+                            "company": "AlphaSense",
+                            "headquarters": "New York, NY",
+                            "website": "https://www.alpha-sense.com/",
+                            "products": ["AI Search Platform", "Market Intelligence"],
+                            "strengths": ["AI capabilities", "Search functionality", "Modern interface"]
+                        }
+                    ]
+                },
+                "LearningManagement_Education": {
+                    "description": "Learning Management System solutions",
+                    "competitors": [
+                        {
+                            "company": "Canvas LMS (Instructure)",
+                            "headquarters": "Salt Lake City, UT",
+                            "website": "https://www.instructure.com/canvas",
+                            "products": ["Canvas LMS", "Canvas Studio", "Canvas Credentials"],
+                            "strengths": ["Ease of use", "Mobile accessibility", "Market growth"]
+                        },
+                        {
+                            "company": "Blackboard Learn",
+                            "headquarters": "Washington, DC",
+                            "website": "https://www.blackboard.com/",
+                            "products": ["Blackboard Learn", "Blackboard Collaborate", "SafeAssign"],
+                            "strengths": ["Feature completeness", "Customization options", "Integration capabilities"]
+                        },
+                        {
+                            "company": "D2L Brightspace",
+                            "headquarters": "Kitchener, Ontario",
+                            "website": "https://www.d2l.com/brightspace/",
+                            "products": ["Brightspace Learning Platform", "Brightspace Insights"],
+                            "strengths": ["Personalization", "Analytics capabilities", "User experience"]
+                        },
+                        {
+                            "company": "Moodle",
+                            "headquarters": "Perth, Australia",
+                            "website": "https://moodle.org/",
+                            "products": ["Moodle LMS", "Moodle Workplace", "MoodleCloud"],
+                            "strengths": ["Cost-effectiveness", "Flexibility", "100+ languages support"]
+                        }
+                    ]
+                },
+                "CloudEngineering_DataIntelligence": {
+                    "description": "Cloud engineering and data intelligence platforms",
+                    "competitors": [
+                        {
+                            "company": "Snowflake",
+                            "headquarters": "San Mateo, CA",
+                            "website": "https://www.snowflake.com/",
+                            "products": ["Snowflake Data Cloud", "Snowpark", "Cortex"],
+                            "strengths": ["Data warehousing leadership", "Multi-cloud flexibility", "SQL focus"]
+                        },
+                        {
+                            "company": "Databricks",
+                            "headquarters": "San Francisco, CA",
+                            "website": "https://databricks.com/",
+                            "products": ["Databricks Platform", "Delta Lake", "MLflow"],
+                            "strengths": ["ML/AI leadership", "Data engineering focus", "Open source ecosystem"]
+                        },
+                        {
+                            "company": "Amazon Redshift",
+                            "headquarters": "Seattle, WA",
+                            "website": "https://aws.amazon.com/redshift/",
+                            "products": ["Redshift", "Redshift Serverless", "Redshift Spectrum"],
+                            "strengths": ["AWS integration", "Cost-effectiveness", "Reliability"]
+                        },
+                        {
+                            "company": "Google BigQuery",
+                            "headquarters": "Mountain View, CA",
+                            "website": "https://cloud.google.com/bigquery",
+                            "products": ["BigQuery", "BigQuery ML", "BigQuery BI Engine"],
+                            "strengths": ["Serverless model", "Google AI", "Analytics focus"]
+                        },
+                        {
+                            "company": "Azure Synapse Analytics",
+                            "headquarters": "Redmond, WA",
+                            "website": "https://azure.microsoft.com/en-us/products/synapse-analytics",
+                            "products": ["Synapse Analytics", "Synapse Studio", "Synapse Pipelines"],
+                            "strengths": ["Microsoft integration", "Unified platform", "Enterprise features"]
+                        }
+                    ]
+                }
+            },
+            "SWOT": {
+                "Digital_Nirvana": {
+                    "Strengths": [
+                        "Comprehensive end-to-end media intelligence platform",
+                        "Strong AI and machine learning capabilities",
+                        "Deep broadcast and media industry expertise",
+                        "Integrated suite of solutions"
+                    ],
+                    "Weaknesses": [
+                        "Smaller market presence compared to hyperscale cloud providers",
+                        "Limited brand recognition outside broadcast/media industry",
+                        "Potential integration complexity across multiple product lines"
+                    ],
+                    "Opportunities": [
+                        "Growing demand for AI-powered content intelligence",
+                        "European Accessibility Act creating new compliance requirements",
+                        "Cloud migration trends creating opportunities for SaaS offerings"
+                    ],
+                    "Threats": [
+                        "Aggressive competition from well-funded hyperscale cloud providers",
+                        "Market disruption from AI-first startups",
+                        "Potential commoditization of basic metadata services"
+                    ]
+                }
+            },
+            "recommendations": [
+                {
+                    "priority": "High",
+                    "title": "Accelerate AI/ML Innovation and Differentiation",
+                    "description": "Invest heavily in advanced AI capabilities that go beyond basic metadata generation. Focus on multimodal AI, real-time processing, and industry-specific intelligence."
+                },
+                {
+                    "priority": "High",
+                    "title": "Expand Cloud-Native and Multi-Cloud Strategy",
+                    "description": "Transform all product offerings into cloud-native solutions with multi-cloud deployment capabilities."
+                },
+                {
+                    "priority": "Medium",
+                    "title": "Develop Integrated Platform Strategy",
+                    "description": "Create a unified platform that leverages synergies across all verticals."
+                }
+            ]
+        };
+
+        // Initialize dashboard
+        function initDashboard() {
+            competitiveData = jsonData;
+            showVertical('MonitorIQ_BroadcastCompliance');
+            loadSWOTAnalysis();
+            loadRecommendations();
+            updateKeyMetrics();
+            createCharts();
+        }
+
+        // Show competitors for selected vertical
+        function showVertical(verticalKey) {
+            // Update active button
+            document.querySelectorAll('.vertical-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[onclick="showVertical('${verticalKey}')"]`).classList.add('active');
+
+            const vertical = competitiveData.verticals[verticalKey];
+            const listContainer = document.getElementById('competitors-list');
+
+            if (!vertical) {
+                listContainer.innerHTML = '<div class="loading">No data available</div>';
+                return;
+            }
+
+            let html = `<h3 style="color: #2c3e50; margin-bottom: 15px;">${vertical.description}</h3>`;
+
+            vertical.competitors.forEach(competitor => {
+                html += `
+                    <div class="competitor-item">
+                        <div class="competitor-name">${competitor.company}</div>
+                        <div class="competitor-location">📍 ${competitor.headquarters}</div>
+                        <div class="competitor-products">🛠️ ${competitor.products.join(', ')}</div>
+                        <div style="margin: 10px 0; color: #27ae60;">
+                            <strong>Key Strengths:</strong> ${competitor.strengths.join(', ')}
+                        </div>
+                        <a href="${competitor.website}" target="_blank" class="competitor-link">Visit Website</a>
+                    </div>
+                `;
+            });
+
+            listContainer.innerHTML = html;
+        }
+
+        // Load SWOT Analysis
+        function loadSWOTAnalysis() {
+            const swot = competitiveData.SWOT.Digital_Nirvana;
+
+            document.getElementById('strengthsList').innerHTML =
+                swot.Strengths.map(item => `<li>✅ ${item}</li>`).join('');
+
+            document.getElementById('weaknessesList').innerHTML =
+                swot.Weaknesses.map(item => `<li>⚠️ ${item}</li>`).join('');
+
+            document.getElementById('opportunitiesList').innerHTML =
+                swot.Opportunities.map(item => `<li>🌟 ${item}</li>`).join('');
+
+            document.getElementById('threatsList').innerHTML =
+                swot.Threats.map(item => `<li>⚡ ${item}</li>`).join('');
+        }
+
+        // Load Recommendations
+        function loadRecommendations() {
+            const container = document.getElementById('recommendationsList');
+
+            container.innerHTML = competitiveData.recommendations.map(rec => `
+                <div class="recommendation priority-${rec.priority.toLowerCase()}">
+                    <h3>${rec.priority === 'High' ? '🔥' : '⭐'} ${rec.title}</h3>
+                    <p>${rec.description}</p>
+                </div>
+            `).join('');
+        }
+
+        // Update key metrics
+        function updateKeyMetrics() {
+            let totalCompetitors = 0;
+            Object.values(competitiveData.verticals).forEach(vertical => {
+                totalCompetitors += vertical.competitors.length;
+            });
+
+            document.getElementById('totalCompetitors').textContent = totalCompetitors;
+        }
+
+        // Create charts
+        function createCharts() {
+            // Competitive Matrix Chart
+            const ctx1 = document.getElementById('competitiveChart').getContext('2d');
+            new Chart(ctx1, {
+                type: 'radar',
+                data: {
+                    labels: ['Market Share', 'AI Integration', 'Cloud Capabilities', 'Pricing', 'Customer Base'],
+                    datasets: [{
+                        label: 'Digital Nirvana',
+                        data: [3, 4, 3, 4, 3],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                        pointBackgroundColor: '#3498db',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#3498db'
+                    }, {
+                        label: 'Market Average',
+                        data: [3.5, 3.2, 3.8, 3.2, 3.8],
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        pointBackgroundColor: '#e74c3c',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#e74c3c'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 5
+                        }
+                    }
+                }
+            });
+
+            // Market Share Chart
+            const ctx2 = document.getElementById('marketShareChart').getContext('2d');
+            new Chart(ctx2, {
+                type: 'doughnut',
+                data: {
+                    labels: ['MonitorIQ', 'MetadataIQ', 'SubsNDubs', 'Media Enrichment', 'Investment Research', 'LMS', 'Cloud Engineering'],
+                    datasets: [{
+                        data: [15, 20, 18, 12, 8, 14, 13],
+                        backgroundColor: [
+                            '#3498db',
+                            '#2ecc71',
+                            '#f39c12',
+                            '#9b59b6',
+                            '#e74c3c',
+                            '#1abc9c',
+                            '#34495e'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize dashboard when page loads
+        window.addEventListener('load', initDashboard);
+    </script>
+</body>
+</html>
