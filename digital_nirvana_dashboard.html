@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Nirvana Competitive Analysis Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+
+        .executive-summary {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .executive-summary h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .market-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .highlight-card {
+            padding: 15px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .highlight-card h3 {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .highlight-card ul {
+            list-style: none;
+            font-size: 0.9em;
+        }
+
+        .highlight-card li {
+            margin: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .highlight-card li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .vertical-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .vertical-btn {
+            padding: 8px 16px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .vertical-btn:hover, .vertical-btn.active {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .competitor-list {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .competitor-item {
+            background: #f8f9fa;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .competitor-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .competitor-name {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+
+        .competitor-location {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin: 5px 0;
+        }
+
+        .competitor-products {
+            color: #34495e;
+            font-size: 0.9em;
+            margin: 5px 0;
+        }
+
+        .competitor-pricing {
+            color: #e74c3c;
+            font-size: 0.9em;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+
+        .competitor-news {
+            background: #ecf0f1;
+            padding: 8px;
+            margin: 8px 0;
+            border-radius: 5px;
+            font-size: 0.85em;
+        }
+
+        .competitor-link {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 5px 12px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.8em;
+            transition: background 0.3s ease;
+        }
+
+        .competitor-link:hover {
+            background: #2980b9;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 350px;
+            margin: 20px 0;
+        }
+
+        .swot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .swot-section {
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .strengths { background: linear-gradient(135deg, #27ae60, #2ecc71); }
+        .weaknesses { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .opportunities { background: linear-gradient(135deg, #f39c12, #e67e22); }
+        .threats { background: linear-gradient(135deg, #8e44ad, #9b59b6); }
+
+        .swot-section h3 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .swot-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .swot-section li {
+            margin: 8px 0;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        .recommendations {
+            display: grid;
+            gap: 20px;
+        }
+
+        .recommendation {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .recommendation h3 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .recommendation .timeline {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin-top: 10px;
+        }
+
+        .recommendation .impact {
+            font-size: 0.9em;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .priority-critical { border-left: 5px solid #c0392b; }
+        .priority-high { border-left: 5px solid #e74c3c; }
+        .priority-medium { border-left: 5px solid #f39c12; }
+
+        .market-trends {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .trend-item {
+            padding: 10px;
+            margin: 10px 0;
+            background: #ecf0f1;
+            border-radius: 8px;
+            border-left: 4px solid #9b59b6;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .loading {
+            text-align: center;
+            color: #7f8c8d;
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Digital Nirvana Competitive Analysis</h1>
+            <p class="subtitle">Strategic Market Intelligence Dashboard • January 27, 2025</p>
+        </header>
+
+        <!-- Executive Summary -->
+        <div class="executive-summary">
+            <h2>Executive Summary</h2>
+            <p style="margin-bottom: 20px;">Digital Nirvana is a well-positioned AI-powered media intelligence and enrichment company competing across multiple verticals including broadcast monitoring, metadata automation, captioning/localization, financial transcription, and educational technology. The company benefits from deep broadcast expertise and strong partnerships (notably with Avid announced March 2025) but faces intense competition from both specialized providers and hyperscale cloud platforms.</p>
+
+            <div class="market-highlights">
+                <div class="highlight-card">
+                    <h3>🎯 Key Opportunities</h3>
+                    <ul>
+                        <li>Azure Media Services closure (June 2024)</li>
+                        <li>Growing OTT/streaming AI demand</li>
+                        <li>Avid global distribution partnership</li>
+                        <li>European Accessibility Act compliance</li>
+                    </ul>
+                </div>
+                <div class="highlight-card" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
+                    <h3>⚠️ Critical Threats</h3>
+                    <ul>
+                        <li>AWS/Google aggressive expansion</li>
+                        <li>AI startups with major funding</li>
+                        <li>Commoditization of basic services</li>
+                        <li>Market consolidation risks</li>
+                    </ul>
+                </div>
+                <div class="highlight-card" style="background: linear-gradient(135deg, #27ae60, #2ecc71);">
+                    <h3>📈 2024-2025 Trends</h3>
+                    <ul>
+                        <li>AI/ML becoming table stakes</li>
+                        <li>Cloud-native deployments surge</li>
+                        <li>Real-time processing focus</li>
+                        <li>Multimodal AI standard</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Verticals Overview -->
+            <div class="card">
+                <h2>📊 Market Verticals</h2>
+                <div class="vertical-nav">
+                    <button class="vertical-btn active" onclick="showVertical('AI_Powered_Media_Intelligence')">Media Intelligence</button>
+                    <button class="vertical-btn" onclick="showVertical('AI_Powered_Transcription_Captioning')">Transcription/Captioning</button>
+                    <button class="vertical-btn" onclick="showVertical('Media_Enrichment_Services')">Media Enrichment</button>
+                    <button class="vertical-btn" onclick="showVertical('Financial_Services_Investment_Research')">Financial Services</button>
+                    <button class="vertical-btn" onclick="showVertical('Educational_Technology_Solutions')">EdTech</button>
+                    <button class="vertical-btn" onclick="showVertical('Cloud_Engineering_Data_Intelligence')">Cloud/Data</button>
+                </div>
+                <div id="competitors-list" class="competitor-list">
+                    <div class="loading">Loading competitors...</div>
+                </div>
+            </div>
+
+            <!-- Competitive Matrix Chart -->
+            <div class="card">
+                <h2>⚔️ Competitive Matrix</h2>
+                <select id="matrixSelector" onchange="updateCompetitiveChart()" style="margin-bottom: 15px; padding: 5px; border-radius: 5px;">
+                    <option value="AI_Media_Intelligence">AI Media Intelligence</option>
+                    <option value="Transcription_Captioning">Transcription & Captioning</option>
+                </select>
+                <div class="chart-container">
+                    <canvas id="competitiveChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Market Position -->
+            <div class="card">
+                <h2>🎯 Market Position</h2>
+                <div class="chart-container">
+                    <canvas id="marketShareChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="card">
+                <h2>📈 Key Insights</h2>
+                <div id="keyMetrics">
+                    <div style="background: #3498db; color: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
+                        <h3>🏢 Total Competitors Analyzed</h3>
+                        <p style="font-size: 2em; margin: 5px 0;"><span id="totalCompetitors">40+</span></p>
+                    </div>
+                    <div style="background: #27ae60; color: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
+                        <h3>💰 Market Opportunity</h3>
+                        <p style="font-size: 2em; margin: 5px 0;">$45B+</p>
+                    </div>
+                    <div style="background: #f39c12; color: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
+                        <h3>🚀 Strategic Recommendations</h3>
+                        <p style="font-size: 2em; margin: 5px 0;">5</p>
+                    </div>
+                    <div style="background: #9b59b6; color: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
+                        <h3>🎯 Azure Exit Opportunity</h3>
+                        <p style="font-size: 1.2em; margin: 5px 0;">June 2024 Closure</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Market Trends -->
+        <div class="market-trends card">
+            <h2>🌐 2025 Market Outlook</h2>
+            <div id="marketTrends">
+                <div class="trend-item">📊 AI/ML will become table stakes - differentiation through specialized models</div>
+                <div class="trend-item">☁️ Cloud-native deployments will exceed on-premise for new implementations</div>
+                <div class="trend-item">⚡ Real-time processing and live workflows will drive purchasing decisions</div>
+                <div class="trend-item">🌍 Compliance and accessibility requirements will expand globally</div>
+                <div class="trend-item">🤝 Market consolidation will accelerate as smaller players struggle</div>
+                <div class="trend-item">🎯 Multimodal AI understanding (video+audio+text) becomes standard</div>
+                <div class="trend-item">💳 Consumption-based pricing models will dominate enterprise sales</div>
+            </div>
+        </div>
+
+        <!-- SWOT Analysis -->
+        <div class="card">
+            <h2>🔍 SWOT Analysis - Digital Nirvana</h2>
+            <div class="swot-grid">
+                <div class="swot-section strengths">
+                    <h3>💪 Strengths</h3>
+                    <ul id="strengthsList"></ul>
+                </div>
+                <div class="swot-section weaknesses">
+                    <h3>⚠️ Weaknesses</h3>
+                    <ul id="weaknessesList"></ul>
+                </div>
+                <div class="swot-section opportunities">
+                    <h3>🌟 Opportunities</h3>
+                    <ul id="opportunitiesList"></ul>
+                </div>
+                <div class="swot-section threats">
+                    <h3>⚡ Threats</h3>
+                    <ul id="threatsList"></ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Strategic Recommendations -->
+        <div class="card">
+            <h2>💡 Strategic Recommendations</h2>
+            <div class="recommendations" id="recommendationsList"></div>
+        </div>
+    </div>
+
+    <script>
+        // Load the complete competitive data
+        let competitiveData = null;
+
+        async function loadCompetitiveData() {
+            try {
+                const response = await fetch('digital_nirvana_competitive_analysis.json');
+                competitiveData = await response.json();
+                initDashboard();
+            } catch (error) {
+                console.error('Error loading data:', error);
+                // Use embedded data as fallback
+                competitiveData = embeddedData;
+                initDashboard();
+            }
+        }
+
+        // Embedded data fallback
+        const embeddedData = {
+            "verticals": {
+                "AI_Powered_Media_Intelligence": {
+                    "description": "MetadataIQ & MonitorIQ - AI-powered metadata automation and broadcast monitoring",
+                    "market_size": "$2.3B growing at 15% CAGR through 2028",
+                    "competitors": [
+                        {
+                            "company": "Veritone AIWARE",
+                            "headquarters": "Costa Mesa, CA",
+                            "website": "https://www.veritone.com/",
+                            "products": ["aiWARE Platform", "Digital Media Hub", "Ask Veri"],
+                            "strengths": ["500+ cognitive engines", "NAB Award winner 5x", "Generative AI"],
+                            "pricing": "Enterprise pricing",
+                            "recent_news": "NAB Product of the Year for Ask Veri AI tool (2024)"
+                        },
+                        {
+                            "company": "Telestream iQ",
+                            "headquarters": "Nevada City, CA",
+                            "website": "https://www.telestream.net/",
+                            "products": ["Sentry", "Surveyor", "Qualify QC"],
+                            "strengths": ["Market leadership", "Cloud migration", "SDI to IP expertise"],
+                            "recent_news": "Introduced Qualify As A Service at NAB 2024"
+                        },
+                        {
+                            "company": "AWS Elemental",
+                            "headquarters": "Seattle, WA",
+                            "website": "https://aws.amazon.com/media-services/",
+                            "products": ["MediaConvert", "MediaLive", "MediaPackage"],
+                            "strengths": ["33% cloud market share", "Azure exit beneficiary", "Twitch/Peacock"],
+                            "pricing": "Usage-based pricing",
+                            "recent_news": "Gaining market from Azure Media Services closure (June 2024)"
+                        },
+                        {
+                            "company": "ENCO Systems",
+                            "headquarters": "Southfield, MI",
+                            "website": "https://www.enco.com/",
+                            "products": ["MOM automation", "enCaption", "Actus-View"],
+                            "strengths": ["FCC compliance", "Cost-effective", "HTML5 interface"],
+                            "recent_news": "Partnership with Actus Digital (2024)"
+                        },
+                        {
+                            "company": "Google Cloud Video Intelligence",
+                            "headquarters": "Mountain View, CA",
+                            "website": "https://cloud.google.com/video-intelligence",
+                            "products": ["Video Intelligence API", "AutoML Video"],
+                            "strengths": ["Google AI", "Scalability", "TensorFlow"],
+                            "pricing": "Pay-per-use API pricing"
+                        }
+                    ]
+                },
+                "AI_Powered_Transcription_Captioning": {
+                    "description": "TranceIQ - Enterprise transcription, captioning, and translation platform",
+                    "market_size": "$8.5B by 2028, growing at 14.3% CAGR",
+                    "competitors": [
+                        {
+                            "company": "Rev",
+                            "headquarters": "San Francisco, CA",
+                            "website": "https://www.rev.com/",
+                            "products": ["AI Transcription", "Human Transcription", "Captions"],
+                            "strengths": ["Fast turnaround", "Mobile app", "User-friendly"],
+                            "pricing": "AI: $0.25/min, Human: $1.99/min",
+                            "recent_news": "Upgraded mobile app for subtitles (2024)"
+                        },
+                        {
+                            "company": "3Play Media",
+                            "headquarters": "Boston, MA",
+                            "website": "https://www.3playmedia.com/",
+                            "products": ["Captioning", "Subtitling", "Localization"],
+                            "strengths": ["99% accuracy", "50+ languages", "Compliance expertise"],
+                            "pricing": "Express: $2.95/min, Enterprise: Custom",
+                            "recent_news": "State of Captioning 2024 Report published"
+                        },
+                        {
+                            "company": "Trint",
+                            "headquarters": "London, UK",
+                            "website": "https://trint.com/",
+                            "products": ["AI Transcription", "Content Editor"],
+                            "strengths": ["BBC/Washington Post partners", "54 languages"],
+                            "pricing": "$52-60/seat/month",
+                            "recent_news": "99% accuracy claims"
+                        },
+                        {
+                            "company": "Otter.ai",
+                            "headquarters": "Mountain View, CA",
+                            "website": "https://otter.ai/",
+                            "products": ["AI Meeting Assistant", "Team Collaboration"],
+                            "strengths": ["Free tier", "Meeting focus", "Team features"],
+                            "pricing": "Free tier, Pro: $8.33/month"
+                        },
+                        {
+                            "company": "AlphaSense",
+                            "headquarters": "New York, NY",
+                            "website": "https://www.alpha-sense.com/",
+                            "products": ["AI Search", "Expert Transcripts"],
+                            "strengths": ["$200M ARR", "85% of S&P 100 customers"],
+                            "recent_news": "$930M Tegus acquisition (June 2024), CNBC Disruptor #8"
+                        }
+                    ]
+                },
+                "Media_Enrichment_Services": {
+                    "description": "Closed captioning, subtitling, dubbing, and media enrichment",
+                    "competitors": [
+                        {
+                            "company": "VITAC",
+                            "headquarters": "Canonsburg, PA",
+                            "website": "https://vitac.com/",
+                            "products": ["Live Captioning", "Translation"],
+                            "strengths": ["Largest NA provider", "AI integration"],
+                            "pricing": "$75-500/hour live",
+                            "recent_news": "AI captioning showcase at IBC 2024"
+                        },
+                        {
+                            "company": "Verbit",
+                            "headquarters": "Tel Aviv, Israel",
+                            "website": "https://verbit.ai/",
+                            "products": ["Captivate™", "Academic Transcription"],
+                            "strengths": ["99% accuracy", "STEM expertise", "50+ languages"],
+                            "recent_news": "Canvas Studio and Kaltura integrations (2024)"
+                        }
+                    ]
+                },
+                "Financial_Services_Investment_Research": {
+                    "description": "Earnings call transcription and financial data",
+                    "market_size": "$35B financial data market",
+                    "competitors": [
+                        {
+                            "company": "S&P Capital IQ",
+                            "headquarters": "New York, NY",
+                            "website": "https://www.spglobal.com/marketintelligence/",
+                            "products": ["Capital IQ Pro"],
+                            "strengths": ["6.2% market share", "Private company data"],
+                            "pricing": "$25,000-30,000+ annually"
+                        },
+                        {
+                            "company": "FactSet",
+                            "headquarters": "Norwalk, CT",
+                            "website": "https://www.factset.com/",
+                            "products": ["FactSet Workstation"],
+                            "strengths": ["4.5% market share", "Excel integration"],
+                            "pricing": "$12,000/year"
+                        }
+                    ]
+                },
+                "Educational_Technology_Solutions": {
+                    "description": "Lecture captioning and educational accessibility",
+                    "competitors": [
+                        {
+                            "company": "Panopto",
+                            "headquarters": "Seattle, WA",
+                            "website": "https://www.panopto.com/",
+                            "products": ["Video Platform", "Auto-Captioning"],
+                            "strengths": ["20+ languages", "WCAG compliance", "Section 508"]
+                        },
+                        {
+                            "company": "Kaltura",
+                            "headquarters": "New York, NY",
+                            "website": "https://corp.kaltura.com/",
+                            "products": ["Management Console", "Media Space"],
+                            "strengths": ["Verbit partnership", "Scalability"]
+                        }
+                    ]
+                },
+                "Cloud_Engineering_Data_Intelligence": {
+                    "description": "Cloud migration and data intelligence",
+                    "market_context": {
+                        "azure_closure": "Microsoft closed Azure Media Services on June 30, 2024",
+                        "cloud_share": "AWS: 33%, Azure: 20%, Google: 10%"
+                    },
+                    "competitors": [
+                        {
+                            "company": "AWS Media Services",
+                            "products": ["Elemental MediaConvert", "MediaLive"],
+                            "strengths": ["Market leader", "Azure exit benefit"]
+                        },
+                        {
+                            "company": "Google Cloud Media AI",
+                            "products": ["Video Intelligence API"],
+                            "strengths": ["AI focus", "Analysis over streaming"]
+                        }
+                    ]
+                }
+            },
+            "competitive_matrix": {
+                "AI_Media_Intelligence": {
+                    "criteria": ["AI Performance", "Broadcast Expertise", "Integration", "Pricing", "Market Presence"],
+                    "Digital_Nirvana": [4, 5, 5, 4, 3],
+                    "Veritone_AIWARE": [5, 4, 4, 3, 4],
+                    "Telestream_iQ": [3, 5, 3, 2, 5],
+                    "Google_Video_Intelligence": [4, 2, 5, 4, 5],
+                    "AWS_Elemental": [3, 3, 5, 4, 5]
+                },
+                "Transcription_Captioning": {
+                    "criteria": ["Accuracy", "Speed", "Languages", "Pricing", "Enterprise Features"],
+                    "Digital_Nirvana": [4, 4, 4, 3, 5],
+                    "Rev": [3, 5, 3, 5, 3],
+                    "3Play_Media": [5, 3, 5, 2, 5],
+                    "Trint": [4, 4, 5, 2, 4],
+                    "Otter_ai": [3, 4, 2, 5, 3]
+                }
+            },
+            "SWOT": {
+                "Digital_Nirvana": {
+                    "Strengths": [
+                        "Deep broadcast and media industry expertise",
+                        "Comprehensive integrated suite reducing vendor fragmentation",
+                        "Strong Avid partnership (March 2025) for global distribution",
+                        "AI/ML specifically trained for media workflows",
+                        "Native integration with major broadcast systems",
+                        "FCC compliance and broadcast standards expertise",
+                        "Real-time processing for live content",
+                        "Multi-vertical presence enabling cross-selling"
+                    ],
+                    "Weaknesses": [
+                        "Smaller market presence vs hyperscale cloud providers",
+                        "Limited brand recognition outside broadcast",
+                        "Higher TCO compared to cloud-native alternatives",
+                        "Integration complexity across product lines",
+                        "Limited global presence vs multinationals",
+                        "Dependency on traditional broadcast trends"
+                    ],
+                    "Opportunities": [
+                        "Azure Media Services closure creating market vacuum",
+                        "Growing OTT/streaming demand for AI intelligence",
+                        "European Accessibility Act compliance requirements",
+                        "Increasing content localization needs globally",
+                        "Post-Volicon market consolidation",
+                        "Cloud migration trends for SaaS",
+                        "AI advancement enabling new use cases",
+                        "Cross-industry applications of technology"
+                    ],
+                    "Threats": [
+                        "Hyperscale cloud providers aggressive expansion",
+                        "Well-funded AI startups disrupting market",
+                        "Commoditization of basic transcription services",
+                        "Economic downturn impacting media CapEx",
+                        "Rapid technology change requiring R&D",
+                        "Customer consolidation reducing TAM",
+                        "Open-source AI reducing barriers to entry"
+                    ]
+                }
+            },
+            "strategic_recommendations": [
+                {
+                    "priority": "Critical",
+                    "title": "Capitalize on Azure Media Services Exit",
+                    "description": "Aggressively target Azure Media Services customers migrating to new platforms. Develop migration tools and competitive pricing.",
+                    "timeline": "Q1-Q2 2025",
+                    "expected_impact": "Capture 10-15% of displaced Azure customers"
+                },
+                {
+                    "priority": "High",
+                    "title": "Strengthen AI Differentiation",
+                    "description": "Develop proprietary AI models specifically trained on broadcast/media content. Focus on multimodal AI combining video, audio, and text.",
+                    "timeline": "Q2-Q3 2025",
+                    "expected_impact": "Create sustainable competitive advantage in AI"
+                },
+                {
+                    "priority": "High",
+                    "title": "Expand Cloud-Native Strategy",
+                    "description": "Transform all products to cloud-native with multi-cloud deployment. List on AWS, Google Cloud, and Azure marketplaces.",
+                    "timeline": "Q2-Q4 2025",
+                    "expected_impact": "Increase addressable market by 40%"
+                },
+                {
+                    "priority": "Medium",
+                    "title": "Build Integrated Platform Ecosystem",
+                    "description": "Create unified platform where all solutions contribute to comprehensive content intelligence. Develop APIs for central hub.",
+                    "timeline": "Q3 2025 - Q1 2026",
+                    "expected_impact": "Increase customer lifetime value by 35%"
+                },
+                {
+                    "priority": "Medium",
+                    "title": "Expand Financial Services Vertical",
+                    "description": "Leverage AlphaSense's $930M Tegus acquisition validation. Target investment firms seeking Bloomberg alternatives.",
+                    "timeline": "Q4 2025",
+                    "expected_impact": "Open new $500M+ TAM"
+                }
+            ]
+        };
+
+        let currentCharts = {};
+
+        // Initialize dashboard
+        function initDashboard() {
+            showVertical('AI_Powered_Media_Intelligence');
+            loadSWOTAnalysis();
+            loadRecommendations();
+            createCharts();
+        }
+
+        // Show competitors for selected vertical
+        function showVertical(verticalKey) {
+            // Update active button
+            document.querySelectorAll('.vertical-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const vertical = competitiveData.verticals[verticalKey];
+            const listContainer = document.getElementById('competitors-list');
+
+            if (!vertical) {
+                listContainer.innerHTML = '<div class="loading">No data available</div>';
+                return;
+            }
+
+            let html = `<h3 style="color: #2c3e50; margin-bottom: 15px;">${vertical.description}</h3>`;
+
+            if (vertical.market_size) {
+                html += `<p style="color: #27ae60; font-weight: bold; margin-bottom: 15px;">Market Size: ${vertical.market_size}</p>`;
+            }
+
+            if (vertical.market_context) {
+                html += `<div style="background: #fff3cd; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+                    <strong>Market Context:</strong><br>
+                    ${vertical.market_context.azure_closure ? `⚠️ ${vertical.market_context.azure_closure}<br>` : ''}
+                    ${vertical.market_context.cloud_share ? `📊 ${vertical.market_context.cloud_share}` : ''}
+                </div>`;
+            }
+
+            vertical.competitors.forEach(competitor => {
+                html += `
+                    <div class="competitor-item">
+                        <div class="competitor-name">${competitor.company}</div>
+                        ${competitor.headquarters ? `<div class="competitor-location">📍 ${competitor.headquarters}</div>` : ''}
+                        <div class="competitor-products">🛠️ ${competitor.products.join(', ')}</div>
+                        <div style="margin: 10px 0; color: #27ae60;">
+                            <strong>Strengths:</strong> ${competitor.strengths.join(', ')}
+                        </div>
+                        ${competitor.pricing ? `<div class="competitor-pricing">💰 ${competitor.pricing}</div>` : ''}
+                        ${competitor.recent_news ? `<div class="competitor-news">📰 ${competitor.recent_news}</div>` : ''}
+                        ${competitor.website ? `<a href="${competitor.website}" target="_blank" class="competitor-link">Visit Website</a>` : ''}
+                    </div>
+                `;
+            });
+
+            listContainer.innerHTML = html;
+        }
+
+        // Load SWOT Analysis
+        function loadSWOTAnalysis() {
+            const swot = competitiveData.SWOT.Digital_Nirvana;
+
+            document.getElementById('strengthsList').innerHTML =
+                swot.Strengths.map(item => `<li>${item}</li>`).join('');
+
+            document.getElementById('weaknessesList').innerHTML =
+                swot.Weaknesses.map(item => `<li>${item}</li>`).join('');
+
+            document.getElementById('opportunitiesList').innerHTML =
+                swot.Opportunities.map(item => `<li>${item}</li>`).join('');
+
+            document.getElementById('threatsList').innerHTML =
+                swot.Threats.map(item => `<li>${item}</li>`).join('');
+        }
+
+        // Load Recommendations
+        function loadRecommendations() {
+            const container = document.getElementById('recommendationsList');
+
+            container.innerHTML = competitiveData.strategic_recommendations.map(rec => `
+                <div class="recommendation priority-${rec.priority.toLowerCase()}">
+                    <h3>${rec.priority === 'Critical' ? '🔴' : rec.priority === 'High' ? '🟠' : '🟡'} ${rec.title}</h3>
+                    <p>${rec.description}</p>
+                    <span class="timeline">📅 ${rec.timeline}</span>
+                    <p class="impact">💡 Expected Impact: ${rec.expected_impact}</p>
+                </div>
+            `).join('');
+        }
+
+        // Update competitive chart
+        function updateCompetitiveChart() {
+            const selector = document.getElementById('matrixSelector');
+            const matrixKey = selector.value;
+            const matrix = competitiveData.competitive_matrix[matrixKey];
+
+            if (currentCharts.competitive) {
+                currentCharts.competitive.destroy();
+            }
+
+            const ctx = document.getElementById('competitiveChart').getContext('2d');
+            currentCharts.competitive = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: matrix.criteria,
+                    datasets: Object.entries(matrix).filter(([key]) => key !== 'criteria').map(([company, values], index) => ({
+                        label: company.replace(/_/g, ' '),
+                        data: values,
+                        borderColor: ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6'][index],
+                        backgroundColor: ['rgba(52, 152, 219, 0.2)', 'rgba(231, 76, 60, 0.2)', 'rgba(46, 204, 113, 0.2)', 'rgba(243, 156, 18, 0.2)', 'rgba(155, 89, 182, 0.2)'][index],
+                        pointBackgroundColor: ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6'][index]
+                    }))
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            suggestedMin: 0,
+                            suggestedMax: 5,
+                            ticks: { stepSize: 1 }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Create charts
+        function createCharts() {
+            // Competitive Chart
+            updateCompetitiveChart();
+
+            // Market Share Chart
+            const ctx2 = document.getElementById('marketShareChart').getContext('2d');
+            currentCharts.marketShare = new Chart(ctx2, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Media Intelligence', 'Transcription/Captioning', 'Media Enrichment', 'Financial Services', 'EdTech', 'Cloud/Data'],
+                    datasets: [{
+                        data: [25, 22, 18, 12, 13, 10],
+                        backgroundColor: [
+                            '#3498db',
+                            '#2ecc71',
+                            '#f39c12',
+                            '#9b59b6',
+                            '#e74c3c',
+                            '#1abc9c'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ' + context.parsed + '% focus';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize on page load
+        window.addEventListener('load', loadCompetitiveData);
+    </script>
+</body>
+</html>
