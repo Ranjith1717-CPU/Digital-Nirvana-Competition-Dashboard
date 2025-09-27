@@ -436,13 +436,15 @@
             <!-- Verticals Overview -->
             <div class="card">
                 <h2>📊 Market Verticals</h2>
-                <div class="vertical-nav">
-                    <button class="vertical-btn active" data-vertical="AI_Powered_Media_Intelligence">Media Intelligence</button>
-                    <button class="vertical-btn" data-vertical="AI_Powered_Transcription_Captioning">Transcription/Captioning</button>
-                    <button class="vertical-btn" data-vertical="Media_Enrichment_Services">Media Enrichment</button>
-                    <button class="vertical-btn" data-vertical="Financial_Services_Investment_Research">Financial Services</button>
-                    <button class="vertical-btn" data-vertical="Educational_Technology_Solutions">EdTech</button>
-                    <button class="vertical-btn" data-vertical="Cloud_Engineering_Data_Intelligence">Cloud/Data</button>
+                <div class="vertical-nav" style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <button class="vertical-btn active" data-vertical="MonitorIQ_Content_Monitoring_Compliance" style="font-size: 0.8em; padding: 6px 12px;">MonitorIQ</button>
+                    <button class="vertical-btn" data-vertical="MetadataIQ_Broadcast_Metadata_Workflows" style="font-size: 0.8em; padding: 6px 12px;">MetadataIQ</button>
+                    <button class="vertical-btn" data-vertical="MediaServicesIQ_Media_Management_Optimization" style="font-size: 0.8em; padding: 6px 12px;">MediaServicesIQ</button>
+                    <button class="vertical-btn" data-vertical="TranceIQ_Transcription_Captioning_Platform" style="font-size: 0.8em; padding: 6px 12px;">TranceIQ</button>
+                    <button class="vertical-btn" data-vertical="Media_Enrichment_Accessibility_Services" style="font-size: 0.8em; padding: 6px 12px;">Media Enrichment</button>
+                    <button class="vertical-btn" data-vertical="Investment_Research_Financial_Data_Services" style="font-size: 0.8em; padding: 6px 12px;">Investment Research</button>
+                    <button class="vertical-btn" data-vertical="Learning_Management_Academic_Solutions" style="font-size: 0.8em; padding: 6px 12px;">Learning Management</button>
+                    <button class="vertical-btn" data-vertical="Cloud_Engineering_Data_Intelligence" style="font-size: 0.8em; padding: 6px 12px;">Cloud & Data</button>
                 </div>
                 <div id="competitors-list" class="competitor-list">
                     <div class="loading">Loading competitors...</div>
@@ -453,8 +455,8 @@
             <div class="card">
                 <h2>⚔️ Competitive Matrix</h2>
                 <select id="matrixSelector" style="margin-bottom: 15px; padding: 5px; border-radius: 5px;">
-                    <option value="AI_Media_Intelligence">AI Media Intelligence</option>
-                    <option value="Transcription_Captioning">Transcription & Captioning</option>
+                    <option value="MonitorIQ_Compliance">MonitorIQ Compliance</option>
+                    <option value="TranceIQ_Transcription">TranceIQ Transcription</option>
                 </select>
                 <div class="chart-container">
                     <canvas id="competitiveChart"></canvas>
@@ -557,57 +559,97 @@
             initDashboard();
         }
 
-        // Embedded data fallback
+        // Embedded data fallback with updated Digital Nirvana product structure
         const embeddedData = {
             "verticals": {
-                "AI_Powered_Media_Intelligence": {
-                    "description": "MetadataIQ & MonitorIQ - AI-powered metadata automation and broadcast monitoring",
-                    "market_size": "$2.3B growing at 15% CAGR through 2028",
+                "MonitorIQ_Content_Monitoring_Compliance": {
+                    "description": "MonitorIQ - The ultimate Content monitoring, Compliance Logging, and Verification Solution! Monitor ad performance issues, inconsistent service quality, compliance gaps, content monitoring challenges, and more in a single platform.",
+                    "market_size": "$2.8B growing as broadcast compliance becomes increasingly complex with OTT/streaming requirements",
                     "competitors": [
                         {
-                            "company": "Veritone AIWARE",
-                            "headquarters": "Costa Mesa, CA",
-                            "website": "https://www.veritone.com/",
-                            "products": ["aiWARE Platform", "Digital Media Hub", "Ask Veri"],
-                            "strengths": ["500+ cognitive engines", "NAB Award winner 5x", "Generative AI"],
+                            "company": "Actus Digital (LiveU Company)",
+                            "headquarters": "Belgium (acquired by LiveU)",
+                            "website": "https://actusdigital.com/",
+                            "products": ["Intelligent Monitoring Platform", "Actus MV Multiview", "Actus AI Media Insight"],
+                            "strengths": ["Market leader", "20 years experience", "AI-enhanced QA", "LiveU backing"],
                             "pricing": "Enterprise pricing",
-                            "recent_news": "NAB Product of the Year for Ask Veri AI tool (2024)"
+                            "recent_news": "Acquired by LiveU, showcasing at Broadcast Asia 2025"
                         },
                         {
-                            "company": "Telestream iQ",
+                            "company": "Telestream Inspect",
                             "headquarters": "Nevada City, CA",
                             "website": "https://www.telestream.net/",
-                            "products": ["Sentry", "Surveyor", "Qualify QC"],
-                            "strengths": ["Market leadership", "Cloud migration", "SDI to IP expertise"],
-                            "recent_news": "Introduced Qualify As A Service at NAB 2024"
+                            "products": ["Inspect Monitoring Platform", "Sentry", "FOQUS Platform"],
+                            "strengths": ["Video quality monitoring", "ST 2110/SRT/NDI expertise", "NAB 2024 innovation"],
+                            "pricing": "Enterprise pricing",
+                            "recent_news": "Launched Inspect Monitoring Platform for modern protocols (NAB 2024)"
                         },
                         {
-                            "company": "AWS Elemental",
-                            "headquarters": "Seattle, WA",
-                            "website": "https://aws.amazon.com/media-services/",
-                            "products": ["MediaConvert", "MediaLive", "MediaPackage"],
-                            "strengths": ["33% cloud market share", "Azure exit beneficiary", "Twitch/Peacock"],
-                            "pricing": "Usage-based pricing",
-                            "recent_news": "Gaining market from Azure Media Services closure (June 2024)"
+                            "company": "VELA",
+                            "headquarters": "United States",
+                            "website": "https://www.vela.com/",
+                            "products": ["24/7 Broadcast Compliance and Streaming Monitoring"],
+                            "strengths": ["Real-time capabilities", "Streaming focus", "24/7 monitoring"],
+                            "pricing": "Subscription-based"
                         },
                         {
-                            "company": "ENCO Systems",
-                            "headquarters": "Southfield, MI",
-                            "website": "https://www.enco.com/",
-                            "products": ["MOM automation", "enCaption", "Actus-View"],
-                            "strengths": ["FCC compliance", "Cost-effective", "HTML5 interface"],
-                            "recent_news": "Partnership with Actus Digital (2024)"
+                            "company": "VoiceInteraction",
+                            "headquarters": "Portugal",
+                            "website": "https://www.voiceinteraction.ai/",
+                            "products": ["AI-Driven Broadcast Compliance", "Ad Performance Analytics"],
+                            "strengths": ["AI-powered ad detection", "Competitor monitoring", "Performance analytics"],
+                            "pricing": "Subscription-based"
+                        }
+                    ]
+                },
+                "MetadataIQ_Broadcast_Metadata_Workflows": {
+                    "description": "MetadataIQ Simplifies Your Broadcast Workflows and Keeps You Compliant On Air. MetadataIQ Is The Backbone Of Broadcast Metadata Workflows. Automate metadata tagging, track quality, and meet broadcast standards at scale.",
+                    "market_size": "$36.44B by 2030, growing at 20.9% CAGR driven by AI automation demand",
+                    "competitors": [
+                        {
+                            "company": "Veritone Digital Media Hub",
+                            "headquarters": "Costa Mesa, CA",
+                            "website": "https://www.veritone.com/",
+                            "products": ["Digital Media Hub", "aiWARE Platform", "Cognitive Engines"],
+                            "strengths": ["500+ cognitive engines", "AI tagging", "Revenue activation"],
+                            "pricing": "Enterprise pricing"
                         },
                         {
-                            "company": "Google Cloud Video Intelligence",
+                            "company": "Google Cloud Video AI",
                             "headquarters": "Mountain View, CA",
                             "website": "https://cloud.google.com/video-intelligence",
-                            "products": ["Video Intelligence API", "AutoML Video"],
-                            "strengths": ["Google AI", "Scalability", "TensorFlow"],
+                            "products": ["Video Intelligence API", "AutoML Video Intelligence"],
+                            "strengths": ["Google AI", "Scalability", "Global infrastructure"],
                             "pricing": "Pay-per-use API pricing"
                         }
                     ]
                 },
+                "MediaServicesIQ_Media_Management_Optimization": {
+                    "description": "Transform your media management and content optimization with MediaServicesIQ. Unlock the power of automated features like chapter marker generation, content summarization, music licensing identification, ad monitoring, and more.",
+                    "market_size": "$12.1B music licensing market by 2033, content optimization growing at 37.68% CAGR",
+                    "competitors": [
+                        {
+                            "company": "Synchtank",
+                            "headquarters": "London, UK",
+                            "website": "https://www.synchtank.com/",
+                            "products": ["Music Rights Management", "Sync Licensing Platform"],
+                            "strengths": ["Music industry expertise", "Rights clearance automation"],
+                            "pricing": "Enterprise licensing"
+                        },
+                        {
+                            "company": "Wowza Media Systems",
+                            "headquarters": "Colorado, USA",
+                            "website": "https://www.wowza.com/",
+                            "products": ["Wowza Streaming Engine", "Digital Rights Management"],
+                            "strengths": ["Live streaming", "DRM", "Scalable infrastructure"],
+                            "pricing": "License and subscription-based"
+                        }
+                    ]
+                },
+                "TranceIQ_Transcription_Captioning_Platform": {
+                    "description": "TranceIQ! Ultimate platform to revolutionize transcription, captioning, subtitle generation, and publishing. Boost efficiency, accuracy, accessibility, and global reach with our automated tools and seamless integration capabilities.",
+                    "market_size": "$8.5B by 2028, growing at 14.3% CAGR driven by accessibility compliance",
+                    "competitors": [
                 "AI_Powered_Transcription_Captioning": {
                     "description": "TranceIQ - Enterprise transcription, captioning, and translation platform",
                     "market_size": "$8.5B by 2028, growing at 14.3% CAGR",
@@ -741,21 +783,21 @@
                 }
             },
             "competitive_matrix": {
-                "AI_Media_Intelligence": {
-                    "criteria": ["AI Performance", "Broadcast Expertise", "Integration", "Pricing", "Market Presence"],
-                    "Digital_Nirvana": [4, 5, 5, 4, 3],
-                    "Veritone_AIWARE": [5, 4, 4, 3, 4],
-                    "Telestream_iQ": [3, 5, 3, 2, 5],
-                    "Google_Video_Intelligence": [4, 2, 5, 4, 5],
-                    "AWS_Elemental": [3, 3, 5, 4, 5]
+                "MonitorIQ_Compliance": {
+                    "criteria": ["Market Position", "AI Integration", "Broadcast Expertise", "Global Reach", "Innovation"],
+                    "Digital_Nirvana": [4, 5, 5, 3, 4],
+                    "Actus_Digital": [5, 4, 5, 4, 4],
+                    "Telestream": [5, 3, 5, 4, 4],
+                    "VELA": [3, 3, 4, 3, 3],
+                    "VoiceInteraction": [3, 4, 3, 3, 4]
                 },
-                "Transcription_Captioning": {
-                    "criteria": ["Accuracy", "Speed", "Languages", "Pricing", "Enterprise Features"],
-                    "Digital_Nirvana": [4, 4, 4, 3, 5],
-                    "Rev": [3, 5, 3, 5, 3],
-                    "3Play_Media": [5, 3, 5, 2, 5],
-                    "Trint": [4, 4, 5, 2, 4],
-                    "Otter_ai": [3, 4, 2, 5, 3]
+                "TranceIQ_Transcription": {
+                    "criteria": ["Accuracy", "Language Support", "Real-time Processing", "Enterprise Features", "Pricing"],
+                    "Digital_Nirvana": [5, 4, 5, 5, 4],
+                    "HappyScribe": [4, 5, 4, 4, 4],
+                    "Descript": [4, 4, 3, 3, 4],
+                    "Rev": [5, 4, 3, 4, 3],
+                    "SyncWords": [4, 5, 5, 4, 4]
                 }
             },
             "SWOT": {
@@ -852,7 +894,7 @@
             setupEventListeners();
 
             // Load initial content
-            showVertical('AI_Powered_Media_Intelligence');
+            showVertical('MonitorIQ_Content_Monitoring_Compliance');
             loadSWOTAnalysis();
             loadRecommendations();
             createCharts();
