@@ -388,12 +388,12 @@
             <div class="card">
                 <h2>📊 Market Verticals</h2>
                 <div class="vertical-nav">
-                    <button class="vertical-btn active" onclick="showVertical('AI_Powered_Media_Intelligence')">Media Intelligence</button>
-                    <button class="vertical-btn" onclick="showVertical('AI_Powered_Transcription_Captioning')">Transcription/Captioning</button>
-                    <button class="vertical-btn" onclick="showVertical('Media_Enrichment_Services')">Media Enrichment</button>
-                    <button class="vertical-btn" onclick="showVertical('Financial_Services_Investment_Research')">Financial Services</button>
-                    <button class="vertical-btn" onclick="showVertical('Educational_Technology_Solutions')">EdTech</button>
-                    <button class="vertical-btn" onclick="showVertical('Cloud_Engineering_Data_Intelligence')">Cloud/Data</button>
+                    <button class="vertical-btn active" onclick="showVertical('AI_Powered_Media_Intelligence', this)">Media Intelligence</button>
+                    <button class="vertical-btn" onclick="showVertical('AI_Powered_Transcription_Captioning', this)">Transcription/Captioning</button>
+                    <button class="vertical-btn" onclick="showVertical('Media_Enrichment_Services', this)">Media Enrichment</button>
+                    <button class="vertical-btn" onclick="showVertical('Financial_Services_Investment_Research', this)">Financial Services</button>
+                    <button class="vertical-btn" onclick="showVertical('Educational_Technology_Solutions', this)">EdTech</button>
+                    <button class="vertical-btn" onclick="showVertical('Cloud_Engineering_Data_Intelligence', this)">Cloud/Data</button>
                 </div>
                 <div id="competitors-list" class="competitor-list">
                     <div class="loading">Loading competitors...</div>
@@ -495,14 +495,17 @@
         async function loadCompetitiveData() {
             try {
                 const response = await fetch('digital_nirvana_competitive_analysis.json');
-                competitiveData = await response.json();
-                initDashboard();
+                if (response.ok) {
+                    competitiveData = await response.json();
+                } else {
+                    throw new Error('Failed to fetch JSON file');
+                }
             } catch (error) {
-                console.error('Error loading data:', error);
+                console.log('Using embedded data as fallback');
                 // Use embedded data as fallback
                 competitiveData = embeddedData;
-                initDashboard();
             }
+            initDashboard();
         }
 
         // Embedded data fallback
@@ -790,6 +793,11 @@
 
         // Initialize dashboard
         function initDashboard() {
+            console.log('Initializing dashboard with data:', competitiveData ? 'loaded' : 'not loaded');
+            if (!competitiveData) {
+                console.error('No competitive data available');
+                return;
+            }
             showVertical('AI_Powered_Media_Intelligence');
             loadSWOTAnalysis();
             loadRecommendations();
@@ -797,10 +805,16 @@
         }
 
         // Show competitors for selected vertical
-        function showVertical(verticalKey) {
+        function showVertical(verticalKey, clickedButton) {
             // Update active button
             document.querySelectorAll('.vertical-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            if (clickedButton) {
+                clickedButton.classList.add('active');
+            } else {
+                // Find button by vertical key for initial load
+                const button = document.querySelector(`[onclick*="${verticalKey}"]`);
+                if (button) button.classList.add('active');
+            }
 
             const vertical = competitiveData.verticals[verticalKey];
             const listContainer = document.getElementById('competitors-list');
