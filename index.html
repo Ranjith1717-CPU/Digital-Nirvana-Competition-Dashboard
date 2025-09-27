@@ -419,13 +419,13 @@
         <header>
             <h1>Digital Nirvana Competitive Analysis</h1>
             <p class="subtitle">Strategic Market Intelligence Dashboard • September 27, 2025</p>
-            <div class="status-badge">✅ All 8 Verticals • 40+ Competitors • Real-time Data</div>
+            <div class="status-badge">✅ All 9 Verticals • 45+ Competitors • Real-time Data</div>
         </header>
 
         <!-- Executive Summary -->
         <div class="executive-summary">
             <h2>Executive Summary</h2>
-            <p style="margin-bottom: 20px;">Digital Nirvana offers a comprehensive suite of AI-powered media intelligence solutions across 8 key verticals: MonitorIQ, MetadataIQ, MediaServicesIQ, TranceIQ, Media Enrichment, Investment Research, Learning Management, and Cloud & Data Intelligence. The company competes in rapidly growing markets valued at over $45B collectively.</p>
+            <p style="margin-bottom: 20px;">Digital Nirvana offers a comprehensive suite of AI-powered media intelligence solutions across 9 key verticals: MonitorIQ, MetadataIQ, MediaServicesIQ, TranceIQ, Media Enrichment, Investment Research, Learning Management, Cloud Engineering, and Data Intelligence. The company competes in rapidly growing markets valued at over $45B collectively.</p>
 
             <div class="market-highlights">
                 <div class="highlight-card">
@@ -470,7 +470,8 @@
                     <button class="vertical-btn" data-vertical="Media_Enrichment_Accessibility_Services">Media Enrichment</button>
                     <button class="vertical-btn" data-vertical="Investment_Research_Financial_Data_Services">Investment Research</button>
                     <button class="vertical-btn" data-vertical="Learning_Management_Academic_Solutions">Learning Management</button>
-                    <button class="vertical-btn" data-vertical="Cloud_Engineering_Data_Intelligence">Cloud & Data</button>
+                    <button class="vertical-btn" data-vertical="Cloud_Engineering_Services">Cloud Engineering</button>
+                    <button class="vertical-btn" data-vertical="Data_Intelligence_Analytics">Data Intelligence</button>
                 </div>
                 <div id="competitors-list" class="competitor-list">
                     <div class="loading">
@@ -478,7 +479,7 @@
                             <div style="font-size: 1.2em; margin-bottom: 10px;">🚀 Ready to Explore</div>
                             <p>Click any product vertical above to view detailed competitor analysis</p>
                             <div style="margin-top: 15px; font-size: 0.9em; color: #7f8c8d;">
-                                📊 8 Verticals • 40+ Competitors • Real-time Intelligence
+                                📊 9 Verticals • 45+ Competitors • Real-time Intelligence
                             </div>
                         </div>
                     </div>
@@ -496,7 +497,8 @@
                     <option value="Media_Enrichment_Services">Media Enrichment Services</option>
                     <option value="Investment_Research_Financial">Investment Research</option>
                     <option value="Learning_Management_Academic">Learning Management</option>
-                    <option value="Cloud_Engineering_Data">Cloud & Data Intelligence</option>
+                    <option value="Cloud_Engineering_Services">Cloud Engineering</option>
+                    <option value="Data_Intelligence_Analytics">Data Intelligence</option>
                 </select>
                 <div class="chart-container">
                     <canvas id="competitiveChart"></canvas>
@@ -525,7 +527,7 @@
                     </div>
                     <div style="background: #f39c12; color: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
                         <h3>🚀 Product Verticals</h3>
-                        <p style="font-size: 2em; margin: 5px 0;">8</p>
+                        <p style="font-size: 2em; margin: 5px 0;">9</p>
                     </div>
                     <div style="background: #9b59b6; color: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
                         <h3>🎯 Strategic Recommendations</h3>
@@ -648,64 +650,97 @@
             initDashboard();
         }
 
-        // Get embedded data
+        // Get embedded data - Complete fallback dataset
         function getEmbeddedData() {
+            console.log('Loading embedded fallback data...');
             return {
                 "verticals": {
                     "MonitorIQ_Content_Monitoring_Compliance": {
-                        "description": "MonitorIQ - The ultimate Content monitoring, Compliance Logging, and Verification Solution! Monitor ad performance issues, inconsistent service quality, compliance gaps, content monitoring challenges, and more in a single platform.",
-                        "market_size": "$2.8B growing as broadcast compliance becomes increasingly complex with OTT/streaming requirements",
+                        "description": "MonitorIQ - Content monitoring, Compliance Logging, and Verification Solution for broadcast monitoring and ad performance tracking.",
+                        "market_size": "$2.8B growing with OTT/streaming compliance requirements",
                         "competitors": [
-                            {
-                                "company": "Actus Digital (LiveU Company)",
-                                "headquarters": "Belgium (acquired by LiveU)",
-                                "website": "https://actusdigital.com/",
-                                "products": ["Intelligent Monitoring Platform", "Actus MV Multiview", "Actus AI Media Insight"],
-                                "strengths": ["Market leader", "20 years experience", "AI-enhanced QA", "LiveU backing"],
-                                "pricing": "Enterprise pricing",
-                                "recent_news": "Acquired by LiveU, showcasing at Broadcast Asia 2025"
-                            },
-                            {
-                                "company": "Telestream Inspect",
-                                "headquarters": "Nevada City, CA",
-                                "website": "https://www.telestream.net/",
-                                "products": ["Inspect Monitoring Platform", "Sentry", "FOQUS Platform"],
-                                "strengths": ["Video quality monitoring", "ST 2110/SRT/NDI expertise", "NAB 2024 innovation"],
-                                "pricing": "Enterprise pricing",
-                                "recent_news": "Launched Inspect Monitoring Platform for modern protocols (NAB 2024)"
-                            },
-                            {
-                                "company": "VELA",
-                                "headquarters": "United States",
-                                "website": "https://www.vela.com/",
-                                "products": ["24/7 Broadcast Compliance and Streaming Monitoring"],
-                                "strengths": ["Real-time capabilities", "Streaming focus", "24/7 monitoring"],
-                                "pricing": "Subscription-based"
-                            }
+                            {"company": "Actus Digital", "strengths": ["Market leader", "AI-enhanced QA"], "pricing": "Enterprise"},
+                            {"company": "Telestream Inspect", "strengths": ["Video quality monitoring", "ST 2110 expertise"], "pricing": "Enterprise"},
+                            {"company": "VELA", "strengths": ["Real-time capabilities", "24/7 monitoring"], "pricing": "Subscription"}
+                        ]
+                    },
+                    "MetadataIQ_Broadcast_Metadata_Workflows": {
+                        "description": "MetadataIQ - Broadcast metadata workflows automation and AI-powered content tagging for media operations.",
+                        "market_size": "$36.44B by 2030, growing at 20.9% CAGR",
+                        "competitors": [
+                            {"company": "Veritone Digital Media Hub", "strengths": ["500+ cognitive engines", "AI tagging"], "pricing": "Enterprise"},
+                            {"company": "Google Cloud Video AI", "strengths": ["Google AI", "Global infrastructure"], "pricing": "Pay-per-use"},
+                            {"company": "AWS Rekognition", "strengths": ["Cloud scalability", "ML capabilities"], "pricing": "Usage-based"}
+                        ]
+                    },
+                    "MediaServicesIQ_Media_Management_Optimization": {
+                        "description": "MediaServicesIQ - Media management and content optimization with music licensing and automated features.",
+                        "market_size": "$12.1B music licensing market by 2033",
+                        "competitors": [
+                            {"company": "Synchtank", "strengths": ["Music rights management", "Sync licensing"], "pricing": "Enterprise"},
+                            {"company": "Wowza Media Systems", "strengths": ["Live streaming", "DRM"], "pricing": "License-based"},
+                            {"company": "Aquarius", "strengths": ["Broadcasting workflows", "Content management"], "pricing": "Subscription"}
                         ]
                     },
                     "TranceIQ_Transcription_Captioning_Platform": {
-                        "description": "TranceIQ! Ultimate platform to revolutionize transcription, captioning, subtitle generation, and publishing. Boost efficiency, accuracy, accessibility, and global reach with our automated tools and seamless integration capabilities.",
-                        "market_size": "$8.5B by 2028, growing at 14.3% CAGR driven by accessibility compliance",
+                        "description": "TranceIQ - Transcription, captioning, subtitle generation platform with AI-powered accuracy and global reach.",
+                        "market_size": "$8.5B by 2028, growing at 14.3% CAGR",
                         "competitors": [
-                            {
-                                "company": "HappyScribe",
-                                "headquarters": "Barcelona, Spain",
-                                "website": "https://www.happyscribe.com/",
-                                "products": ["AI Transcription", "Subtitles & Translation", "AI Notetaker"],
-                                "strengths": ["120+ languages", "API-first approach", "Platform integrations"],
-                                "pricing": "Subscription-based with usage tiers",
-                                "recent_news": "Expanded to 120+ languages and enhanced API capabilities (2024)"
-                            },
-                            {
-                                "company": "Rev",
-                                "headquarters": "San Francisco, CA",
-                                "website": "https://www.rev.com/",
-                                "products": ["AI Transcription", "Human Transcription", "Closed Captions"],
-                                "strengths": ["Human-AI hybrid", "Fast turnaround", "37 languages"],
-                                "pricing": "AI: $0.25/min, Human: $1.99/min",
-                                "recent_news": "Enhanced mobile app for subtitle services (2024)"
-                            }
+                            {"company": "Rev", "strengths": ["Human-AI hybrid", "Fast turnaround"], "pricing": "AI: $0.25/min"},
+                            {"company": "HappyScribe", "strengths": ["120+ languages", "API-first"], "pricing": "Subscription tiers"},
+                            {"company": "3Play Media", "strengths": ["99% accuracy", "50+ languages"], "pricing": "$2.95/min"},
+                            {"company": "Descript", "strengths": ["Video editing integration", "AI transcription"], "pricing": "Subscription"}
+                        ]
+                    },
+                    "Media_Enrichment_Accessibility_Services": {
+                        "description": "Media enrichment services including closed captioning, subtitling, dubbing, and accessibility compliance.",
+                        "market_size": "$15B+ accessibility compliance market growing rapidly",
+                        "competitors": [
+                            {"company": "VITAC", "strengths": ["Largest NA provider", "AI integration"], "pricing": "$75-500/hour"},
+                            {"company": "Verbit", "strengths": ["99% accuracy", "STEM expertise"], "pricing": "Enterprise"},
+                            {"company": "Ai-Media", "strengths": ["Live captioning", "Global presence"], "pricing": "Subscription"},
+                            {"company": "CaptionSync", "strengths": ["Broadcast focus", "Real-time"], "pricing": "Usage-based"}
+                        ]
+                    },
+                    "Investment_Research_Financial_Data_Services": {
+                        "description": "Investment research and financial data services with AI-powered transcription and analysis capabilities.",
+                        "market_size": "$35B financial data market",
+                        "competitors": [
+                            {"company": "AlphaSense", "strengths": ["$200M ARR", "85% of S&P 100"], "pricing": "Enterprise"},
+                            {"company": "Bloomberg Terminal", "strengths": ["Market standard", "Real-time data"], "pricing": "$24k/year"},
+                            {"company": "Refinitiv", "strengths": ["Thomson Reuters data", "Global coverage"], "pricing": "Enterprise"},
+                            {"company": "Sentieo", "strengths": ["Research platform", "AI insights"], "pricing": "Subscription"}
+                        ]
+                    },
+                    "Learning_Management_Academic_Solutions": {
+                        "description": "Learning management and academic solutions with AI-powered assessment and accessibility features.",
+                        "market_size": "$26.43B AI assessment market by 2032",
+                        "competitors": [
+                            {"company": "Gradescope", "strengths": ["AI grading", "University focus"], "pricing": "Per student"},
+                            {"company": "Turnitin", "strengths": ["Plagiarism detection", "Writing feedback"], "pricing": "Institutional"},
+                            {"company": "Canvas LMS", "strengths": ["Market leader", "Integration"], "pricing": "Per user"},
+                            {"company": "Blackboard", "strengths": ["Enterprise features", "Global presence"], "pricing": "Enterprise"}
+                        ]
+                    },
+                    "Cloud_Engineering_Services": {
+                        "description": "Transform your IT with seamless, scalable Cloud Engineering solutions. Simplify cloud transition with efficient migration and infrastructure optimization.",
+                        "market_size": "$95M average cloud investment per company in 2024",
+                        "competitors": [
+                            {"company": "PwC Cloud Engineering", "strengths": ["Big 4 consulting", "End-to-end transformation"], "pricing": "Premium consulting"},
+                            {"company": "NTT DATA", "strengths": ["4PB+ data experience", "43k+ pipelines"], "pricing": "Enterprise"},
+                            {"company": "Accenture Cloud", "strengths": ["Global delivery", "Industry expertise"], "pricing": "Consulting-based"},
+                            {"company": "AWS Professional Services", "strengths": ["Cloud native", "Certified expertise"], "pricing": "Usage-based"}
+                        ]
+                    },
+                    "Data_Intelligence_Analytics": {
+                        "description": "Make Data Your Competitive Advantage with Data Intelligence services that transform unstructured data into actionable intelligence.",
+                        "market_size": "$274.3B data analytics market by 2030, growing at 13.2% CAGR",
+                        "competitors": [
+                            {"company": "Palantir Technologies", "strengths": ["Government credibility", "Large-scale processing"], "pricing": "$5M+ enterprise deals"},
+                            {"company": "Databricks", "strengths": ["Unified platform", "Apache Spark"], "pricing": "Usage-based DBU"},
+                            {"company": "Snowflake", "strengths": ["Cloud-native", "Data sharing"], "pricing": "Consumption-based"},
+                            {"company": "Tableau", "strengths": ["Market-leading visualization", "User-friendly"], "pricing": "$70-150/user/month"},
+                            {"company": "Microsoft Power BI", "strengths": ["Office integration", "Competitive pricing"], "pricing": "$10-20/user/month"}
                         ]
                     }
                 },
@@ -717,11 +752,62 @@
                         "Telestream": [5, 3, 5, 4, 4],
                         "VELA": [3, 3, 4, 3, 3]
                     },
+                    "MetadataIQ_Workflows": {
+                        "criteria": ["AI Performance", "Broadcast Integration", "Scalability", "Enterprise Features", "Market Presence"],
+                        "Digital_Nirvana": [5, 5, 4, 5, 3],
+                        "Veritone": [5, 3, 5, 4, 4],
+                        "Google_Video_AI": [5, 2, 5, 3, 5],
+                        "AWS_Rekognition": [4, 2, 5, 3, 5]
+                    },
+                    "MediaServicesIQ_Management": {
+                        "criteria": ["Feature Richness", "Music Rights", "Content Optimization", "Integration", "Pricing"],
+                        "Digital_Nirvana": [5, 5, 5, 5, 4],
+                        "Synchtank": [4, 5, 3, 4, 3],
+                        "Wowza": [4, 3, 4, 5, 4],
+                        "Aquarius": [3, 4, 3, 3, 3]
+                    },
                     "TranceIQ_Transcription": {
                         "criteria": ["Accuracy", "Language Support", "Real-time Processing", "Enterprise Features", "Pricing"],
                         "Digital_Nirvana": [5, 4, 5, 5, 4],
+                        "Rev": [5, 4, 3, 4, 3],
                         "HappyScribe": [4, 5, 4, 4, 4],
-                        "Rev": [5, 4, 3, 4, 3]
+                        "3Play_Media": [5, 5, 3, 5, 2]
+                    },
+                    "Media_Enrichment_Services": {
+                        "criteria": ["Accessibility Features", "Language Coverage", "Compliance", "Quality", "Scalability"],
+                        "Digital_Nirvana": [5, 4, 5, 5, 4],
+                        "VITAC": [5, 4, 5, 5, 3],
+                        "Verbit": [5, 5, 4, 5, 4],
+                        "Ai_Media": [4, 4, 4, 4, 4]
+                    },
+                    "Investment_Research_Financial": {
+                        "criteria": ["Data Quality", "Real-time Processing", "Analytics", "Enterprise Features", "Market Coverage"],
+                        "Digital_Nirvana": [4, 5, 4, 5, 3],
+                        "AlphaSense": [5, 4, 5, 5, 4],
+                        "Bloomberg": [5, 5, 5, 5, 5],
+                        "Refinitiv": [5, 4, 5, 5, 5]
+                    },
+                    "Learning_Management_Academic": {
+                        "criteria": ["AI Assessment", "Accessibility", "Integration", "Scalability", "User Experience"],
+                        "Digital_Nirvana": [4, 5, 4, 4, 4],
+                        "Gradescope": [5, 3, 5, 5, 5],
+                        "Turnitin": [4, 4, 5, 5, 4],
+                        "Canvas": [3, 4, 5, 5, 4]
+                    },
+                    "Cloud_Engineering_Services": {
+                        "criteria": ["Cloud Migration", "Infrastructure Management", "DevOps Integration", "Security & Compliance", "Scalability"],
+                        "Digital_Nirvana": [4, 4, 4, 5, 4],
+                        "PwC_Cloud": [5, 4, 3, 5, 4],
+                        "NTT_DATA": [5, 5, 4, 4, 5],
+                        "AWS_Professional": [3, 5, 5, 5, 5]
+                    },
+                    "Data_Intelligence_Analytics": {
+                        "criteria": ["Analytics Capabilities", "ML/AI Integration", "Data Visualization", "Real-time Processing", "Enterprise Features"],
+                        "Digital_Nirvana": [4, 5, 4, 5, 4],
+                        "Palantir": [5, 5, 3, 4, 5],
+                        "Databricks": [5, 5, 4, 4, 4],
+                        "Snowflake": [4, 3, 3, 4, 5],
+                        "Tableau": [3, 3, 5, 3, 4]
                     }
                 }
             };

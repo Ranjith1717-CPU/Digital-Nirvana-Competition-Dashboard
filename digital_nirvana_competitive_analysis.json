@@ -735,24 +735,24 @@
         }
       ]
     },
-    "Cloud_Engineering_Data_Intelligence": {
-      "description": "Transform your IT with seamless, scalable Cloud Engineering solutions. We simplify your cloud transition with seamless, efficient migration. Make Data Your Competitive Advantage with Data Intelligence services that transform unstructured data into actionable intelligence.",
+    "Cloud_Engineering_Services": {
+      "description": "Transform your IT with seamless, scalable Cloud Engineering solutions. We simplify your cloud transition with seamless, efficient migration and infrastructure optimization.",
       "market_size": "$95M average cloud investment per company in 2024, growing with 40% faster AI-powered migration",
       "digital_nirvana_position": {
-        "products": ["Cloud Engineering", "Data Intelligence"],
+        "products": ["Cloud Engineering"],
         "key_features": [
           "Seamless cloud migration and transition",
           "Scalable cloud infrastructure solutions",
-          "Data Intelligence and analytics platforms",
-          "Unstructured data transformation",
-          "Actionable intelligence generation",
-          "Business decision support systems"
+          "Multi-cloud deployment strategies",
+          "Cloud-native application development",
+          "Infrastructure automation and DevOps",
+          "Cloud security and compliance"
         ],
         "market_differentiators": [
           "End-to-end cloud transformation",
-          "AI-powered data intelligence",
-          "Media-industry expertise",
-          "Integrated migration and analytics"
+          "Media-industry cloud expertise",
+          "AI-powered migration tools",
+          "Broadcast-native cloud solutions"
         ]
       },
       "competitors": [
@@ -843,6 +843,113 @@
           "pricing": "Subscription-based"
         }
       ]
+    },
+    "Data_Intelligence_Analytics": {
+      "description": "Make Data Your Competitive Advantage with Data Intelligence services that transform unstructured data into actionable intelligence for strategic business decisions.",
+      "market_size": "$274.3B data analytics market by 2030, growing at 13.2% CAGR",
+      "digital_nirvana_position": {
+        "products": ["Data Intelligence"],
+        "key_features": [
+          "Unstructured data transformation",
+          "Actionable intelligence generation",
+          "Business decision support systems",
+          "Advanced analytics and ML insights",
+          "Real-time data processing",
+          "Predictive analytics capabilities"
+        ],
+        "market_differentiators": [
+          "AI-powered data intelligence",
+          "Media-specific analytics",
+          "Real-time processing capabilities",
+          "Integrated content intelligence"
+        ]
+      },
+      "competitors": [
+        {
+          "company": "Palantir Technologies",
+          "headquarters": "Denver, CO",
+          "founded": "2003",
+          "website": "https://www.palantir.com/",
+          "products": ["Palantir Foundry", "Palantir Gotham", "Artificial Intelligence Platform"],
+          "target_customers": "Government, Fortune 500, healthcare",
+          "key_differentiators": "Large-scale data integration with AI/ML capabilities",
+          "strengths": [
+            "Government and enterprise credibility",
+            "Large-scale data processing",
+            "Advanced AI/ML integration",
+            "Security and compliance focus"
+          ],
+          "weaknesses": ["Premium pricing", "Complex implementation", "Limited SMB market"],
+          "pricing": "Enterprise licensing, $5M+ typical deals"
+        },
+        {
+          "company": "Databricks",
+          "headquarters": "San Francisco, CA",
+          "founded": "2013",
+          "website": "https://databricks.com/",
+          "products": ["Databricks Lakehouse Platform", "Unity Catalog", "MLflow"],
+          "target_customers": "Data teams, enterprises, cloud-native companies",
+          "key_differentiators": "Unified analytics platform for data engineering and ML",
+          "strengths": [
+            "Unified data and ML platform",
+            "Strong Apache Spark foundation",
+            "Multi-cloud support",
+            "Growing enterprise adoption"
+          ],
+          "weaknesses": ["Learning curve", "Cost management complexity"],
+          "pricing": "Usage-based, DBU (Databricks Unit) pricing"
+        },
+        {
+          "company": "Snowflake",
+          "headquarters": "Bozeman, MT",
+          "founded": "2012",
+          "website": "https://www.snowflake.com/",
+          "products": ["Snowflake Data Cloud", "Snowpark", "Data Marketplace"],
+          "target_customers": "Enterprises, data-driven organizations",
+          "key_differentiators": "Cloud-native data warehouse with data sharing capabilities",
+          "strengths": [
+            "Cloud-native architecture",
+            "Automatic scaling",
+            "Data sharing ecosystem",
+            "Strong performance"
+          ],
+          "weaknesses": ["Can be expensive at scale", "Limited ML capabilities"],
+          "pricing": "Consumption-based, credit system"
+        },
+        {
+          "company": "Tableau",
+          "headquarters": "Seattle, WA",
+          "founded": "2003",
+          "website": "https://www.tableau.com/",
+          "products": ["Tableau Desktop", "Tableau Server", "Tableau Cloud"],
+          "target_customers": "Business analysts, enterprises, data teams",
+          "key_differentiators": "Leading business intelligence and data visualization",
+          "strengths": [
+            "Market-leading visualization",
+            "User-friendly interface",
+            "Strong community",
+            "Salesforce integration"
+          ],
+          "weaknesses": ["Limited advanced analytics", "Salesforce dependency"],
+          "pricing": "Per user licensing, $70-$150/user/month"
+        },
+        {
+          "company": "Microsoft Power BI",
+          "headquarters": "Redmond, WA",
+          "website": "https://powerbi.microsoft.com/",
+          "products": ["Power BI Desktop", "Power BI Service", "Power BI Premium"],
+          "target_customers": "Microsoft ecosystem users, enterprises",
+          "key_differentiators": "Integrated Microsoft ecosystem with competitive pricing",
+          "strengths": [
+            "Microsoft Office integration",
+            "Competitive pricing",
+            "Growing feature set",
+            "Enterprise adoption"
+          ],
+          "weaknesses": ["Microsoft ecosystem dependency", "Complex licensing"],
+          "pricing": "$10-20/user/month, Premium capacity options"
+        }
+      ]
     }
   },
   "competitive_matrix": {
@@ -901,13 +1008,22 @@
       "Blackboard": [3, 4, 5, 5, 3],
       "Canvas": [3, 4, 5, 5, 4]
     },
-    "Cloud_Engineering_Data": {
-      "criteria": ["AI/ML Capabilities", "Data Processing", "Cloud Integration", "Enterprise Features", "Performance"],
+    "Cloud_Engineering_Services": {
+      "criteria": ["Cloud Migration", "Infrastructure Management", "DevOps Integration", "Security & Compliance", "Scalability"],
+      "Digital_Nirvana": [4, 4, 4, 5, 4],
+      "PwC_Cloud": [5, 4, 3, 5, 4],
+      "NTT_DATA": [5, 5, 4, 4, 5],
+      "Accenture": [5, 4, 4, 5, 5],
+      "AWS_Professional": [3, 5, 5, 5, 5]
+    },
+    "Data_Intelligence_Analytics": {
+      "criteria": ["Analytics Capabilities", "ML/AI Integration", "Data Visualization", "Real-time Processing", "Enterprise Features"],
       "Digital_Nirvana": [4, 5, 4, 5, 4],
-      "AWS_Media_Services": [4, 5, 5, 5, 5],
-      "Google_Cloud_AI": [5, 5, 5, 4, 5],
-      "Azure_Cognitive": [4, 4, 5, 5, 4],
-      "Databricks": [5, 5, 4, 4, 4]
+      "Palantir": [5, 5, 3, 4, 5],
+      "Databricks": [5, 5, 4, 4, 4],
+      "Snowflake": [4, 3, 3, 4, 5],
+      "Tableau": [3, 3, 5, 3, 4],
+      "Power_BI": [3, 3, 4, 3, 4]
     }
   },
   "SWOT": {
