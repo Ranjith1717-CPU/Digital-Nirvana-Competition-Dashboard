@@ -505,6 +505,60 @@
                 </div>
             </div>
 
+            <!-- Recent Competitive Features -->
+            <div class="card">
+                <h2>🚀 Recent Competitive Features</h2>
+                <p style="margin-bottom: 15px; color: #7f8c8d;">Latest product features and innovations from competitors across all verticals (Last 6 months)</p>
+
+                <div style="margin-bottom: 20px; display: flex; gap: 15px; flex-wrap: wrap; align-items: center;">
+                    <div>
+                        <label style="font-weight: 600; margin-right: 8px;">Filter by Vertical:</label>
+                        <select id="verticalFilter" style="padding: 8px 12px; border-radius: 8px; border: 2px solid #ddd; font-size: 14px;">
+                            <option value="all">All Verticals</option>
+                            <option value="MonitorIQ_Content_Monitoring_Compliance">MonitorIQ</option>
+                            <option value="MetadataIQ_Broadcast_Metadata_Workflows">MetadataIQ</option>
+                            <option value="MediaServicesIQ_Media_Management_Optimization">MediaServicesIQ</option>
+                            <option value="TranceIQ_Transcription_Captioning_Platform">TranceIQ</option>
+                            <option value="Media_Enrichment_Accessibility_Services">Media Enrichment</option>
+                            <option value="Investment_Research_Financial_Data_Services">Investment Research</option>
+                            <option value="Learning_Management_Academic_Solutions">Learning Management</option>
+                            <option value="Cloud_Engineering_Services">Cloud Engineering</option>
+                            <option value="Data_Intelligence_Analytics">Data Intelligence</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="font-weight: 600; margin-right: 8px;">Filter by Impact:</label>
+                        <select id="impactFilter" style="padding: 8px 12px; border-radius: 8px; border: 2px solid #ddd; font-size: 14px;">
+                            <option value="all">All Impact Levels</option>
+                            <option value="High">High Impact</option>
+                            <option value="Medium">Medium Impact</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label style="font-weight: 600; margin-right: 8px;">Filter by Category:</label>
+                        <select id="categoryFilter" style="padding: 8px 12px; border-radius: 8px; border: 2px solid #ddd; font-size: 14px;">
+                            <option value="all">All Categories</option>
+                            <option value="AI/ML">AI/ML</option>
+                            <option value="User Experience">User Experience</option>
+                            <option value="Infrastructure">Infrastructure</option>
+                            <option value="Real-time Analytics">Real-time Analytics</option>
+                            <option value="Automation">Automation</option>
+                            <option value="Integration">Integration</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="recent-features-container" style="max-height: 500px; overflow-y: auto;">
+                    <div class="loading">Loading recent competitive features...</div>
+                </div>
+
+                <div style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 8px; font-size: 0.9em; color: #6c757d;">
+                    💡 <strong>Competitive Intelligence:</strong> Stay ahead by tracking the latest features and innovations from competitors. Features marked as "High Impact" represent significant competitive threats or opportunities.
+                </div>
+            </div>
+
             <!-- Market Position -->
             <div class="card">
                 <h2>🎯 Market Position</h2>
@@ -809,6 +863,94 @@
                         "Snowflake": [4, 3, 3, 4, 5],
                         "Tableau": [3, 3, 5, 3, 4]
                     }
+                },
+                "recent_features": {
+                    "timeline_months": 6,
+                    "last_updated": "2025-09-27",
+                    "features_by_vertical": {
+                        "MonitorIQ_Content_Monitoring_Compliance": [
+                            {
+                                "company": "Actus Digital",
+                                "feature": "AI-Enhanced Content Recognition",
+                                "description": "New deep learning models for improved content detection and compliance monitoring with 95% accuracy",
+                                "launch_date": "2025-08-15",
+                                "impact": "High",
+                                "category": "AI/ML",
+                                "source": "Product announcement at IBC 2025"
+                            },
+                            {
+                                "company": "VELA",
+                                "feature": "Multi-Platform Dashboard 3.0",
+                                "description": "Unified dashboard supporting OTT, broadcast, and social media monitoring in single interface",
+                                "launch_date": "2025-06-10",
+                                "impact": "High",
+                                "category": "User Experience",
+                                "source": "Company blog announcement"
+                            }
+                        ],
+                        "TranceIQ_Transcription_Captioning_Platform": [
+                            {
+                                "company": "Rev",
+                                "feature": "Rev Max AI Transcription",
+                                "description": "New AI model achieving 99% accuracy for business meetings and interviews with speaker identification",
+                                "launch_date": "2025-09-15",
+                                "impact": "High",
+                                "category": "AI/ML",
+                                "source": "Product launch announcement"
+                            },
+                            {
+                                "company": "HappyScribe",
+                                "feature": "Real-time Collaborative Editing",
+                                "description": "Multi-user real-time editing platform for transcripts with version control and comments",
+                                "launch_date": "2025-08-28",
+                                "impact": "Medium",
+                                "category": "Collaboration",
+                                "source": "Feature update blog"
+                            }
+                        ],
+                        "Data_Intelligence_Analytics": [
+                            {
+                                "company": "Palantir",
+                                "feature": "Foundry AI Studio",
+                                "description": "No-code AI model building platform for enterprise data science teams with pre-built templates",
+                                "launch_date": "2025-09-18",
+                                "impact": "High",
+                                "category": "No-Code AI",
+                                "source": "Palantir AIPlatform conference"
+                            },
+                            {
+                                "company": "Databricks",
+                                "feature": "Unity Catalog Universal Search",
+                                "description": "Natural language search across all data assets with automatic data lineage and governance",
+                                "launch_date": "2025-08-25",
+                                "impact": "High",
+                                "category": "Data Discovery",
+                                "source": "Data + AI Summit 2025"
+                            }
+                        ],
+                        "Investment_Research_Financial_Data_Services": [
+                            {
+                                "company": "AlphaSense",
+                                "feature": "Smart Alerts 3.0",
+                                "description": "AI-powered real-time alerts for market events with sentiment analysis and impact scoring",
+                                "launch_date": "2025-09-12",
+                                "impact": "High",
+                                "category": "Real-time Analytics",
+                                "source": "Financial technology summit"
+                            }
+                        ],
+                        "Cloud_Engineering_Services": [
+                            {
+                                "company": "AWS Professional Services",
+                                "feature": "Migration Accelerator AI",
+                                "description": "AI-powered cloud migration planning and optimization tool reducing migration time by 60%",
+                                "launch_date": "2025-09-20",
+                                "impact": "High",
+                                "category": "Migration Tools",
+                                "source": "AWS Partner Summit"
+                            }
+                        ]
+                    }
                 }
             };
         }
@@ -825,6 +967,9 @@
 
             // Set up event listeners for all interactive elements
             setupEventListeners();
+
+            // Initialize recent features
+            loadRecentFeatures();
 
             // Load initial content
             showVertical('MonitorIQ_Content_Monitoring_Compliance');
@@ -855,6 +1000,21 @@
             const matrixSelector = document.getElementById('matrixSelector');
             if (matrixSelector) {
                 matrixSelector.addEventListener('change', updateCompetitiveChart);
+            }
+
+            // Recent features filter controls
+            const verticalFilter = document.getElementById('verticalFilter');
+            const impactFilter = document.getElementById('impactFilter');
+            const categoryFilter = document.getElementById('categoryFilter');
+
+            if (verticalFilter) {
+                verticalFilter.addEventListener('change', filterRecentFeatures);
+            }
+            if (impactFilter) {
+                impactFilter.addEventListener('change', filterRecentFeatures);
+            }
+            if (categoryFilter) {
+                categoryFilter.addEventListener('change', filterRecentFeatures);
             }
 
             console.log('Event listeners setup complete');
@@ -1000,6 +1160,152 @@
                     }
                 }
             });
+        }
+
+        // Load recent competitive features
+        function loadRecentFeatures() {
+            console.log('Loading recent features...');
+            if (!competitiveData || !competitiveData.recent_features) {
+                console.log('No recent features data available');
+                document.getElementById('recent-features-container').innerHTML =
+                    '<div style="text-align: center; padding: 20px; color: #6c757d;">No recent features data available</div>';
+                return;
+            }
+
+            // Display all features initially
+            filterRecentFeatures();
+        }
+
+        // Filter recent features based on selected criteria
+        function filterRecentFeatures() {
+            if (!competitiveData || !competitiveData.recent_features) return;
+
+            const verticalFilter = document.getElementById('verticalFilter').value;
+            const impactFilter = document.getElementById('impactFilter').value;
+            const categoryFilter = document.getElementById('categoryFilter').value;
+
+            let allFeatures = [];
+
+            // Collect all features from all verticals
+            Object.keys(competitiveData.recent_features.features_by_vertical).forEach(verticalKey => {
+                const features = competitiveData.recent_features.features_by_vertical[verticalKey];
+                features.forEach(feature => {
+                    allFeatures.push({
+                        ...feature,
+                        vertical: verticalKey,
+                        verticalName: getVerticalDisplayName(verticalKey)
+                    });
+                });
+            });
+
+            // Apply filters
+            let filteredFeatures = allFeatures.filter(feature => {
+                if (verticalFilter !== 'all' && feature.vertical !== verticalFilter) return false;
+                if (impactFilter !== 'all' && feature.impact !== impactFilter) return false;
+                if (categoryFilter !== 'all' && feature.category !== categoryFilter) return false;
+                return true;
+            });
+
+            // Sort by launch date (newest first)
+            filteredFeatures.sort((a, b) => new Date(b.launch_date) - new Date(a.launch_date));
+
+            // Display filtered features
+            displayRecentFeatures(filteredFeatures);
+        }
+
+        // Get display name for vertical
+        function getVerticalDisplayName(verticalKey) {
+            const verticalNames = {
+                'MonitorIQ_Content_Monitoring_Compliance': 'MonitorIQ',
+                'MetadataIQ_Broadcast_Metadata_Workflows': 'MetadataIQ',
+                'MediaServicesIQ_Media_Management_Optimization': 'MediaServicesIQ',
+                'TranceIQ_Transcription_Captioning_Platform': 'TranceIQ',
+                'Media_Enrichment_Accessibility_Services': 'Media Enrichment',
+                'Investment_Research_Financial_Data_Services': 'Investment Research',
+                'Learning_Management_Academic_Solutions': 'Learning Management',
+                'Cloud_Engineering_Services': 'Cloud Engineering',
+                'Data_Intelligence_Analytics': 'Data Intelligence'
+            };
+            return verticalNames[verticalKey] || verticalKey;
+        }
+
+        // Display recent features in the container
+        function displayRecentFeatures(features) {
+            const container = document.getElementById('recent-features-container');
+
+            if (features.length === 0) {
+                container.innerHTML = '<div style="text-align: center; padding: 20px; color: #6c757d;">No features found matching the selected filters</div>';
+                return;
+            }
+
+            let html = '';
+            features.forEach(feature => {
+                const impactColor = feature.impact === 'High' ? '#e74c3c' : '#f39c12';
+                const impactIcon = feature.impact === 'High' ? '🔥' : '⚡';
+                const categoryIcon = getCategoryIcon(feature.category);
+
+                const launchDate = new Date(feature.launch_date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+
+                html += `
+                    <div style="border: 1px solid #e0e0e0; border-radius: 12px; padding: 20px; margin-bottom: 15px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="display: flex; justify-content: between; align-items: flex-start; margin-bottom: 12px;">
+                            <div style="flex: 1;">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                                    <h3 style="margin: 0; color: #2c3e50; font-size: 1.1em;">${feature.feature}</h3>
+                                    <span style="background: ${impactColor}; color: white; padding: 4px 8px; border-radius: 6px; font-size: 0.75em; font-weight: 600;">
+                                        ${impactIcon} ${feature.impact} Impact
+                                    </span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px; font-size: 0.9em; color: #666;">
+                                    <span style="font-weight: 600; color: #3498db;">${feature.company}</span>
+                                    <span>${feature.verticalName}</span>
+                                    <span>${categoryIcon} ${feature.category}</span>
+                                    <span>📅 ${launchDate}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="margin: 0 0 10px 0; color: #555; line-height: 1.5;">${feature.description}</p>
+                        <div style="font-size: 0.85em; color: #888; font-style: italic;">
+                            Source: ${feature.source}
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+
+            // Update count in header
+            const headerCount = document.querySelector('#recent-features-container').previousElementSibling.previousElementSibling;
+            if (headerCount && headerCount.tagName === 'P') {
+                headerCount.textContent = `Latest product features and innovations from competitors across all verticals (${features.length} features found)`;
+            }
+        }
+
+        // Get icon for feature category
+        function getCategoryIcon(category) {
+            const icons = {
+                'AI/ML': '🤖',
+                'User Experience': '🎨',
+                'Infrastructure': '🏗️',
+                'Real-time Analytics': '📊',
+                'Automation': '⚙️',
+                'Integration': '🔗',
+                'Live Services': '📡',
+                'Education': '🎓',
+                'Quality Control': '✅',
+                'Collaboration': '🤝',
+                'Migration Tools': '🚀',
+                'Optimization': '⚡',
+                'No-Code AI': '🧩',
+                'Data Discovery': '🔍',
+                'AI Integration': '🤖',
+                'Content Integrity': '🛡️'
+            };
+            return icons[category] || '📋';
         }
 
         // Debug function to test buttons manually
