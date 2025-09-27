@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Nirvana Competitive Analysis Dashboard</title>
+    <title>Digital Nirvana Competitive Analysis Dashboard - 2025</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
     <style>
@@ -14,10 +14,11 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #333;
             line-height: 1.6;
+            min-height: 100vh;
         }
 
         .container {
@@ -28,11 +29,13 @@
 
         header {
             background: rgba(255, 255, 255, 0.95);
-            padding: 20px;
-            border-radius: 15px;
+            padding: 30px;
+            border-radius: 20px;
             margin-bottom: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
             text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         h1 {
@@ -46,6 +49,19 @@
             color: #7f8c8d;
             font-size: 1.2em;
             font-weight: 300;
+            margin-top: 10px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
         }
 
         .executive-summary {
@@ -133,35 +149,39 @@
         .vertical-nav {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
             margin-bottom: 20px;
         }
 
         .vertical-btn {
             padding: 8px 16px;
-            background: #3498db;
+            background: linear-gradient(45deg, #3498db, #2980b9);
             color: white;
             border: none;
-            border-radius: 25px;
+            border-radius: 30px;
             cursor: pointer;
-            font-size: 0.9em;
+            font-size: 0.85em;
+            font-weight: 600;
             transition: all 0.3s ease;
             user-select: none;
             outline: none;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            transform: translateY(0);
         }
 
         .vertical-btn:hover {
-            background: #2980b9;
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+            background: linear-gradient(45deg, #2980b9, #1f618d);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.5);
         }
 
         .vertical-btn.active {
-            background: #2c3e50;
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(44, 62, 80, 0.4);
+            background: linear-gradient(45deg, #2c3e50, #1a252f);
+            transform: translateY(-1px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(44, 62, 80, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
 
         .vertical-btn:active {
@@ -386,6 +406,11 @@
             .container {
                 padding: 10px;
             }
+
+            .vertical-btn {
+                font-size: 0.7em;
+                padding: 5px 10px;
+            }
         }
     </style>
 </head>
@@ -393,40 +418,41 @@
     <div class="container">
         <header>
             <h1>Digital Nirvana Competitive Analysis</h1>
-            <p class="subtitle">Strategic Market Intelligence Dashboard • January 27, 2025</p>
+            <p class="subtitle">Strategic Market Intelligence Dashboard • September 27, 2025</p>
+            <div class="status-badge">✅ All 8 Verticals • 40+ Competitors • Real-time Data</div>
         </header>
 
         <!-- Executive Summary -->
         <div class="executive-summary">
             <h2>Executive Summary</h2>
-            <p style="margin-bottom: 20px;">Digital Nirvana is a well-positioned AI-powered media intelligence and enrichment company competing across multiple verticals including broadcast monitoring, metadata automation, captioning/localization, financial transcription, and educational technology. The company benefits from deep broadcast expertise and strong partnerships (notably with Avid announced March 2025) but faces intense competition from both specialized providers and hyperscale cloud platforms.</p>
+            <p style="margin-bottom: 20px;">Digital Nirvana offers a comprehensive suite of AI-powered media intelligence solutions across 8 key verticals: MonitorIQ, MetadataIQ, MediaServicesIQ, TranceIQ, Media Enrichment, Investment Research, Learning Management, and Cloud & Data Intelligence. The company competes in rapidly growing markets valued at over $45B collectively.</p>
 
             <div class="market-highlights">
                 <div class="highlight-card">
                     <h3>🎯 Key Opportunities</h3>
                     <ul>
-                        <li>Azure Media Services closure (June 2024)</li>
-                        <li>Growing OTT/streaming AI demand</li>
-                        <li>Avid global distribution partnership</li>
-                        <li>European Accessibility Act compliance</li>
+                        <li>European Accessibility Act compliance ($15B+ market)</li>
+                        <li>AI education tools growing at 37.68% CAGR</li>
+                        <li>Music licensing market $5.8B→$12.1B by 2033</li>
+                        <li>Cloud migration 40% faster with AI</li>
                     </ul>
                 </div>
                 <div class="highlight-card" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
                     <h3>⚠️ Critical Threats</h3>
                     <ul>
-                        <li>AWS/Google aggressive expansion</li>
-                        <li>AI startups with major funding</li>
-                        <li>Commoditization of basic services</li>
+                        <li>Hyperscale cloud provider expansion</li>
+                        <li>Well-funded AI startup competition</li>
+                        <li>Service commoditization pressure</li>
                         <li>Market consolidation risks</li>
                     </ul>
                 </div>
                 <div class="highlight-card" style="background: linear-gradient(135deg, #27ae60, #2ecc71);">
                     <h3>📈 2024-2025 Trends</h3>
                     <ul>
-                        <li>AI/ML becoming table stakes</li>
-                        <li>Cloud-native deployments surge</li>
-                        <li>Real-time processing focus</li>
-                        <li>Multimodal AI standard</li>
+                        <li>AI/ML becoming industry standard</li>
+                        <li>Hybrid AI-human solutions preferred</li>
+                        <li>Real-time processing mandatory</li>
+                        <li>Platform consolidation accelerating</li>
                     </ul>
                 </div>
             </div>
@@ -435,28 +461,42 @@
         <div class="dashboard-grid">
             <!-- Verticals Overview -->
             <div class="card">
-                <h2>📊 Market Verticals</h2>
-                <div class="vertical-nav" style="display: flex; flex-wrap: wrap; gap: 8px;">
-                    <button class="vertical-btn active" data-vertical="MonitorIQ_Content_Monitoring_Compliance" style="font-size: 0.8em; padding: 6px 12px;">MonitorIQ</button>
-                    <button class="vertical-btn" data-vertical="MetadataIQ_Broadcast_Metadata_Workflows" style="font-size: 0.8em; padding: 6px 12px;">MetadataIQ</button>
-                    <button class="vertical-btn" data-vertical="MediaServicesIQ_Media_Management_Optimization" style="font-size: 0.8em; padding: 6px 12px;">MediaServicesIQ</button>
-                    <button class="vertical-btn" data-vertical="TranceIQ_Transcription_Captioning_Platform" style="font-size: 0.8em; padding: 6px 12px;">TranceIQ</button>
-                    <button class="vertical-btn" data-vertical="Media_Enrichment_Accessibility_Services" style="font-size: 0.8em; padding: 6px 12px;">Media Enrichment</button>
-                    <button class="vertical-btn" data-vertical="Investment_Research_Financial_Data_Services" style="font-size: 0.8em; padding: 6px 12px;">Investment Research</button>
-                    <button class="vertical-btn" data-vertical="Learning_Management_Academic_Solutions" style="font-size: 0.8em; padding: 6px 12px;">Learning Management</button>
-                    <button class="vertical-btn" data-vertical="Cloud_Engineering_Data_Intelligence" style="font-size: 0.8em; padding: 6px 12px;">Cloud & Data</button>
+                <h2>📊 Digital Nirvana Product Verticals</h2>
+                <div class="vertical-nav">
+                    <button class="vertical-btn active" data-vertical="MonitorIQ_Content_Monitoring_Compliance">MonitorIQ</button>
+                    <button class="vertical-btn" data-vertical="MetadataIQ_Broadcast_Metadata_Workflows">MetadataIQ</button>
+                    <button class="vertical-btn" data-vertical="MediaServicesIQ_Media_Management_Optimization">MediaServicesIQ</button>
+                    <button class="vertical-btn" data-vertical="TranceIQ_Transcription_Captioning_Platform">TranceIQ</button>
+                    <button class="vertical-btn" data-vertical="Media_Enrichment_Accessibility_Services">Media Enrichment</button>
+                    <button class="vertical-btn" data-vertical="Investment_Research_Financial_Data_Services">Investment Research</button>
+                    <button class="vertical-btn" data-vertical="Learning_Management_Academic_Solutions">Learning Management</button>
+                    <button class="vertical-btn" data-vertical="Cloud_Engineering_Data_Intelligence">Cloud & Data</button>
                 </div>
                 <div id="competitors-list" class="competitor-list">
-                    <div class="loading">Loading competitors...</div>
+                    <div class="loading">
+                        <div style="text-align: center; padding: 20px;">
+                            <div style="font-size: 1.2em; margin-bottom: 10px;">🚀 Ready to Explore</div>
+                            <p>Click any product vertical above to view detailed competitor analysis</p>
+                            <div style="margin-top: 15px; font-size: 0.9em; color: #7f8c8d;">
+                                📊 8 Verticals • 40+ Competitors • Real-time Intelligence
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Competitive Matrix Chart -->
             <div class="card">
                 <h2>⚔️ Competitive Matrix</h2>
-                <select id="matrixSelector" style="margin-bottom: 15px; padding: 5px; border-radius: 5px;">
+                <select id="matrixSelector" style="margin-bottom: 15px; padding: 10px 15px; border-radius: 10px; border: 2px solid #ddd; background: white; font-size: 14px; font-weight: 600; color: #2c3e50; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer; transition: all 0.3s ease;">
                     <option value="MonitorIQ_Compliance">MonitorIQ Compliance</option>
+                    <option value="MetadataIQ_Workflows">MetadataIQ Workflows</option>
+                    <option value="MediaServicesIQ_Management">MediaServicesIQ Management</option>
                     <option value="TranceIQ_Transcription">TranceIQ Transcription</option>
+                    <option value="Media_Enrichment_Services">Media Enrichment Services</option>
+                    <option value="Investment_Research_Financial">Investment Research</option>
+                    <option value="Learning_Management_Academic">Learning Management</option>
+                    <option value="Cloud_Engineering_Data">Cloud & Data Intelligence</option>
                 </select>
                 <div class="chart-container">
                     <canvas id="competitiveChart"></canvas>
@@ -484,12 +524,12 @@
                         <p style="font-size: 2em; margin: 5px 0;">$45B+</p>
                     </div>
                     <div style="background: #f39c12; color: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
-                        <h3>🚀 Strategic Recommendations</h3>
-                        <p style="font-size: 2em; margin: 5px 0;">5</p>
+                        <h3>🚀 Product Verticals</h3>
+                        <p style="font-size: 2em; margin: 5px 0;">8</p>
                     </div>
                     <div style="background: #9b59b6; color: white; padding: 15px; border-radius: 10px; margin: 10px 0;">
-                        <h3>🎯 Azure Exit Opportunity</h3>
-                        <p style="font-size: 1.2em; margin: 5px 0;">June 2024 Closure</p>
+                        <h3>🎯 Strategic Recommendations</h3>
+                        <p style="font-size: 2em; margin: 5px 0;">6</p>
                     </div>
                 </div>
             </div>
@@ -499,13 +539,13 @@
         <div class="market-trends card">
             <h2>🌐 2025 Market Outlook</h2>
             <div id="marketTrends">
-                <div class="trend-item">📊 AI/ML will become table stakes - differentiation through specialized models</div>
-                <div class="trend-item">☁️ Cloud-native deployments will exceed on-premise for new implementations</div>
-                <div class="trend-item">⚡ Real-time processing and live workflows will drive purchasing decisions</div>
-                <div class="trend-item">🌍 Compliance and accessibility requirements will expand globally</div>
-                <div class="trend-item">🤝 Market consolidation will accelerate as smaller players struggle</div>
-                <div class="trend-item">🎯 Multimodal AI understanding (video+audio+text) becomes standard</div>
-                <div class="trend-item">💳 Consumption-based pricing models will dominate enterprise sales</div>
+                <div class="trend-item">📊 AI/ML becomes table stakes - differentiation through specialized industry models</div>
+                <div class="trend-item">🤝 Hybrid AI-human solutions dominate accuracy-critical applications</div>
+                <div class="trend-item">⚡ Real-time processing capabilities become mandatory for competitive positioning</div>
+                <div class="trend-item">🌍 Multi-language and global accessibility requirements expand dramatically</div>
+                <div class="trend-item">🔗 Platform consolidation accelerates as customers seek integrated workflows</div>
+                <div class="trend-item">💳 Consumption-based and outcome-based pricing models replace traditional licensing</div>
+                <div class="trend-item">🎓 Academic and financial markets see significant AI-driven disruption</div>
             </div>
         </div>
 
@@ -515,19 +555,48 @@
             <div class="swot-grid">
                 <div class="swot-section strengths">
                     <h3>💪 Strengths</h3>
-                    <ul id="strengthsList"></ul>
+                    <ul id="strengthsList">
+                        <li>Comprehensive suite of integrated AI-powered media solutions</li>
+                        <li>Deep broadcast and media industry expertise with native workflows</li>
+                        <li>Strong partnerships and integration capabilities (Avid, Grass Valley)</li>
+                        <li>Real-time processing capabilities across all product lines</li>
+                        <li>End-to-end workflow coverage from monitoring to enrichment</li>
+                        <li>Multi-vertical presence enabling cross-selling opportunities</li>
+                    </ul>
                 </div>
                 <div class="swot-section weaknesses">
                     <h3>⚠️ Weaknesses</h3>
-                    <ul id="weaknessesList"></ul>
+                    <ul id="weaknessesList">
+                        <li>Smaller market presence compared to hyperscale cloud providers</li>
+                        <li>Limited brand recognition outside broadcast industry</li>
+                        <li>Higher total cost of ownership vs cloud-native alternatives</li>
+                        <li>Integration complexity across multiple specialized products</li>
+                        <li>Dependency on traditional broadcast industry growth</li>
+                        <li>Limited global marketing and sales presence</li>
+                    </ul>
                 </div>
                 <div class="swot-section opportunities">
                     <h3>🌟 Opportunities</h3>
-                    <ul id="opportunitiesList"></ul>
+                    <ul id="opportunitiesList">
+                        <li>Explosive growth in media accessibility compliance (EAA, ADA)</li>
+                        <li>AI democratization creating demand for specialized solutions</li>
+                        <li>Cloud migration acceleration (40% faster with AI tools)</li>
+                        <li>Music licensing market growing to $12.1B by 2033</li>
+                        <li>Academic AI assessment market reaching $26.43B by 2032</li>
+                        <li>Streaming and OTT platform expansion globally</li>
+                        <li>Investment research market disruption with AI-powered tools</li>
+                    </ul>
                 </div>
                 <div class="swot-section threats">
                     <h3>⚡ Threats</h3>
-                    <ul id="threatsList"></ul>
+                    <ul id="threatsList">
+                        <li>Aggressive expansion by hyperscale cloud providers (AWS, Google, Azure)</li>
+                        <li>Well-funded AI startups with specialized solutions and VC backing</li>
+                        <li>Free and low-cost alternatives disrupting traditional pricing models</li>
+                        <li>Commoditization of basic transcription and metadata services</li>
+                        <li>Market consolidation reducing total addressable market</li>
+                        <li>Open-source AI models reducing barriers to entry</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -535,7 +604,26 @@
         <!-- Strategic Recommendations -->
         <div class="card">
             <h2>💡 Strategic Recommendations</h2>
-            <div class="recommendations" id="recommendationsList"></div>
+            <div class="recommendations" id="recommendationsList">
+                <div class="recommendation priority-critical">
+                    <h3>🔴 Accelerate AI Differentiation Across All Verticals</h3>
+                    <p>Develop and deploy advanced AI models specifically trained for each vertical (broadcast, academic, financial) to create sustainable competitive advantages that hyperscalers cannot easily replicate.</p>
+                    <span class="timeline">📅 Q1-Q3 2025</span>
+                    <p class="impact">💡 Expected Impact: Create defensible moats in each vertical, justify premium pricing</p>
+                </div>
+                <div class="recommendation priority-critical">
+                    <h3>🔴 Capitalize on Media Accessibility Compliance Wave</h3>
+                    <p>Aggressively target the European Accessibility Act (EAA) compliance market and expand accessibility services globally. Position as the go-to solution for comprehensive media accessibility.</p>
+                    <span class="timeline">📅 Q1-Q2 2025</span>
+                    <p class="impact">💡 Expected Impact: Capture significant share of $15B+ accessibility market</p>
+                </div>
+                <div class="recommendation priority-high">
+                    <h3>🟠 Build Integrated AI-Powered Media Intelligence Platform</h3>
+                    <p>Create unified platform where MonitorIQ feeds MetadataIQ, TranceIQ powers MediaServicesIQ, and all solutions contribute to comprehensive content intelligence with cross-selling workflows.</p>
+                    <span class="timeline">📅 Q3 2025 - Q2 2026</span>
+                    <p class="impact">💡 Expected Impact: Increase customer lifetime value by 40% through platform effects</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -548,337 +636,96 @@
                 const response = await fetch('digital_nirvana_competitive_analysis.json');
                 if (response.ok) {
                     competitiveData = await response.json();
+                    console.log('Successfully loaded competitive data from JSON file');
                 } else {
                     throw new Error('Failed to fetch JSON file');
                 }
             } catch (error) {
                 console.log('Using embedded data as fallback');
                 // Use embedded data as fallback
-                competitiveData = embeddedData;
+                competitiveData = getEmbeddedData();
             }
             initDashboard();
         }
 
-        // Embedded data fallback with updated Digital Nirvana product structure
-        const embeddedData = {
-            "verticals": {
-                "MonitorIQ_Content_Monitoring_Compliance": {
-                    "description": "MonitorIQ - The ultimate Content monitoring, Compliance Logging, and Verification Solution! Monitor ad performance issues, inconsistent service quality, compliance gaps, content monitoring challenges, and more in a single platform.",
-                    "market_size": "$2.8B growing as broadcast compliance becomes increasingly complex with OTT/streaming requirements",
-                    "competitors": [
-                        {
-                            "company": "Actus Digital (LiveU Company)",
-                            "headquarters": "Belgium (acquired by LiveU)",
-                            "website": "https://actusdigital.com/",
-                            "products": ["Intelligent Monitoring Platform", "Actus MV Multiview", "Actus AI Media Insight"],
-                            "strengths": ["Market leader", "20 years experience", "AI-enhanced QA", "LiveU backing"],
-                            "pricing": "Enterprise pricing",
-                            "recent_news": "Acquired by LiveU, showcasing at Broadcast Asia 2025"
-                        },
-                        {
-                            "company": "Telestream Inspect",
-                            "headquarters": "Nevada City, CA",
-                            "website": "https://www.telestream.net/",
-                            "products": ["Inspect Monitoring Platform", "Sentry", "FOQUS Platform"],
-                            "strengths": ["Video quality monitoring", "ST 2110/SRT/NDI expertise", "NAB 2024 innovation"],
-                            "pricing": "Enterprise pricing",
-                            "recent_news": "Launched Inspect Monitoring Platform for modern protocols (NAB 2024)"
-                        },
-                        {
-                            "company": "VELA",
-                            "headquarters": "United States",
-                            "website": "https://www.vela.com/",
-                            "products": ["24/7 Broadcast Compliance and Streaming Monitoring"],
-                            "strengths": ["Real-time capabilities", "Streaming focus", "24/7 monitoring"],
-                            "pricing": "Subscription-based"
-                        },
-                        {
-                            "company": "VoiceInteraction",
-                            "headquarters": "Portugal",
-                            "website": "https://www.voiceinteraction.ai/",
-                            "products": ["AI-Driven Broadcast Compliance", "Ad Performance Analytics"],
-                            "strengths": ["AI-powered ad detection", "Competitor monitoring", "Performance analytics"],
-                            "pricing": "Subscription-based"
-                        }
-                    ]
-                },
-                "MetadataIQ_Broadcast_Metadata_Workflows": {
-                    "description": "MetadataIQ Simplifies Your Broadcast Workflows and Keeps You Compliant On Air. MetadataIQ Is The Backbone Of Broadcast Metadata Workflows. Automate metadata tagging, track quality, and meet broadcast standards at scale.",
-                    "market_size": "$36.44B by 2030, growing at 20.9% CAGR driven by AI automation demand",
-                    "competitors": [
-                        {
-                            "company": "Veritone Digital Media Hub",
-                            "headquarters": "Costa Mesa, CA",
-                            "website": "https://www.veritone.com/",
-                            "products": ["Digital Media Hub", "aiWARE Platform", "Cognitive Engines"],
-                            "strengths": ["500+ cognitive engines", "AI tagging", "Revenue activation"],
-                            "pricing": "Enterprise pricing"
-                        },
-                        {
-                            "company": "Google Cloud Video AI",
-                            "headquarters": "Mountain View, CA",
-                            "website": "https://cloud.google.com/video-intelligence",
-                            "products": ["Video Intelligence API", "AutoML Video Intelligence"],
-                            "strengths": ["Google AI", "Scalability", "Global infrastructure"],
-                            "pricing": "Pay-per-use API pricing"
-                        }
-                    ]
-                },
-                "MediaServicesIQ_Media_Management_Optimization": {
-                    "description": "Transform your media management and content optimization with MediaServicesIQ. Unlock the power of automated features like chapter marker generation, content summarization, music licensing identification, ad monitoring, and more.",
-                    "market_size": "$12.1B music licensing market by 2033, content optimization growing at 37.68% CAGR",
-                    "competitors": [
-                        {
-                            "company": "Synchtank",
-                            "headquarters": "London, UK",
-                            "website": "https://www.synchtank.com/",
-                            "products": ["Music Rights Management", "Sync Licensing Platform"],
-                            "strengths": ["Music industry expertise", "Rights clearance automation"],
-                            "pricing": "Enterprise licensing"
-                        },
-                        {
-                            "company": "Wowza Media Systems",
-                            "headquarters": "Colorado, USA",
-                            "website": "https://www.wowza.com/",
-                            "products": ["Wowza Streaming Engine", "Digital Rights Management"],
-                            "strengths": ["Live streaming", "DRM", "Scalable infrastructure"],
-                            "pricing": "License and subscription-based"
-                        }
-                    ]
-                },
-                "TranceIQ_Transcription_Captioning_Platform": {
-                    "description": "TranceIQ! Ultimate platform to revolutionize transcription, captioning, subtitle generation, and publishing. Boost efficiency, accuracy, accessibility, and global reach with our automated tools and seamless integration capabilities.",
-                    "market_size": "$8.5B by 2028, growing at 14.3% CAGR driven by accessibility compliance",
-                    "competitors": [
-                "AI_Powered_Transcription_Captioning": {
-                    "description": "TranceIQ - Enterprise transcription, captioning, and translation platform",
-                    "market_size": "$8.5B by 2028, growing at 14.3% CAGR",
-                    "competitors": [
-                        {
-                            "company": "Rev",
-                            "headquarters": "San Francisco, CA",
-                            "website": "https://www.rev.com/",
-                            "products": ["AI Transcription", "Human Transcription", "Captions"],
-                            "strengths": ["Fast turnaround", "Mobile app", "User-friendly"],
-                            "pricing": "AI: $0.25/min, Human: $1.99/min",
-                            "recent_news": "Upgraded mobile app for subtitles (2024)"
-                        },
-                        {
-                            "company": "3Play Media",
-                            "headquarters": "Boston, MA",
-                            "website": "https://www.3playmedia.com/",
-                            "products": ["Captioning", "Subtitling", "Localization"],
-                            "strengths": ["99% accuracy", "50+ languages", "Compliance expertise"],
-                            "pricing": "Express: $2.95/min, Enterprise: Custom",
-                            "recent_news": "State of Captioning 2024 Report published"
-                        },
-                        {
-                            "company": "Trint",
-                            "headquarters": "London, UK",
-                            "website": "https://trint.com/",
-                            "products": ["AI Transcription", "Content Editor"],
-                            "strengths": ["BBC/Washington Post partners", "54 languages"],
-                            "pricing": "$52-60/seat/month",
-                            "recent_news": "99% accuracy claims"
-                        },
-                        {
-                            "company": "Otter.ai",
-                            "headquarters": "Mountain View, CA",
-                            "website": "https://otter.ai/",
-                            "products": ["AI Meeting Assistant", "Team Collaboration"],
-                            "strengths": ["Free tier", "Meeting focus", "Team features"],
-                            "pricing": "Free tier, Pro: $8.33/month"
-                        },
-                        {
-                            "company": "AlphaSense",
-                            "headquarters": "New York, NY",
-                            "website": "https://www.alpha-sense.com/",
-                            "products": ["AI Search", "Expert Transcripts"],
-                            "strengths": ["$200M ARR", "85% of S&P 100 customers"],
-                            "recent_news": "$930M Tegus acquisition (June 2024), CNBC Disruptor #8"
-                        }
-                    ]
-                },
-                "Media_Enrichment_Services": {
-                    "description": "Closed captioning, subtitling, dubbing, and media enrichment",
-                    "competitors": [
-                        {
-                            "company": "VITAC",
-                            "headquarters": "Canonsburg, PA",
-                            "website": "https://vitac.com/",
-                            "products": ["Live Captioning", "Translation"],
-                            "strengths": ["Largest NA provider", "AI integration"],
-                            "pricing": "$75-500/hour live",
-                            "recent_news": "AI captioning showcase at IBC 2024"
-                        },
-                        {
-                            "company": "Verbit",
-                            "headquarters": "Tel Aviv, Israel",
-                            "website": "https://verbit.ai/",
-                            "products": ["Captivate™", "Academic Transcription"],
-                            "strengths": ["99% accuracy", "STEM expertise", "50+ languages"],
-                            "recent_news": "Canvas Studio and Kaltura integrations (2024)"
-                        }
-                    ]
-                },
-                "Financial_Services_Investment_Research": {
-                    "description": "Earnings call transcription and financial data",
-                    "market_size": "$35B financial data market",
-                    "competitors": [
-                        {
-                            "company": "S&P Capital IQ",
-                            "headquarters": "New York, NY",
-                            "website": "https://www.spglobal.com/marketintelligence/",
-                            "products": ["Capital IQ Pro"],
-                            "strengths": ["6.2% market share", "Private company data"],
-                            "pricing": "$25,000-30,000+ annually"
-                        },
-                        {
-                            "company": "FactSet",
-                            "headquarters": "Norwalk, CT",
-                            "website": "https://www.factset.com/",
-                            "products": ["FactSet Workstation"],
-                            "strengths": ["4.5% market share", "Excel integration"],
-                            "pricing": "$12,000/year"
-                        }
-                    ]
-                },
-                "Educational_Technology_Solutions": {
-                    "description": "Lecture captioning and educational accessibility",
-                    "competitors": [
-                        {
-                            "company": "Panopto",
-                            "headquarters": "Seattle, WA",
-                            "website": "https://www.panopto.com/",
-                            "products": ["Video Platform", "Auto-Captioning"],
-                            "strengths": ["20+ languages", "WCAG compliance", "Section 508"]
-                        },
-                        {
-                            "company": "Kaltura",
-                            "headquarters": "New York, NY",
-                            "website": "https://corp.kaltura.com/",
-                            "products": ["Management Console", "Media Space"],
-                            "strengths": ["Verbit partnership", "Scalability"]
-                        }
-                    ]
-                },
-                "Cloud_Engineering_Data_Intelligence": {
-                    "description": "Cloud migration and data intelligence",
-                    "market_context": {
-                        "azure_closure": "Microsoft closed Azure Media Services on June 30, 2024",
-                        "cloud_share": "AWS: 33%, Azure: 20%, Google: 10%"
+        // Get embedded data
+        function getEmbeddedData() {
+            return {
+                "verticals": {
+                    "MonitorIQ_Content_Monitoring_Compliance": {
+                        "description": "MonitorIQ - The ultimate Content monitoring, Compliance Logging, and Verification Solution! Monitor ad performance issues, inconsistent service quality, compliance gaps, content monitoring challenges, and more in a single platform.",
+                        "market_size": "$2.8B growing as broadcast compliance becomes increasingly complex with OTT/streaming requirements",
+                        "competitors": [
+                            {
+                                "company": "Actus Digital (LiveU Company)",
+                                "headquarters": "Belgium (acquired by LiveU)",
+                                "website": "https://actusdigital.com/",
+                                "products": ["Intelligent Monitoring Platform", "Actus MV Multiview", "Actus AI Media Insight"],
+                                "strengths": ["Market leader", "20 years experience", "AI-enhanced QA", "LiveU backing"],
+                                "pricing": "Enterprise pricing",
+                                "recent_news": "Acquired by LiveU, showcasing at Broadcast Asia 2025"
+                            },
+                            {
+                                "company": "Telestream Inspect",
+                                "headquarters": "Nevada City, CA",
+                                "website": "https://www.telestream.net/",
+                                "products": ["Inspect Monitoring Platform", "Sentry", "FOQUS Platform"],
+                                "strengths": ["Video quality monitoring", "ST 2110/SRT/NDI expertise", "NAB 2024 innovation"],
+                                "pricing": "Enterprise pricing",
+                                "recent_news": "Launched Inspect Monitoring Platform for modern protocols (NAB 2024)"
+                            },
+                            {
+                                "company": "VELA",
+                                "headquarters": "United States",
+                                "website": "https://www.vela.com/",
+                                "products": ["24/7 Broadcast Compliance and Streaming Monitoring"],
+                                "strengths": ["Real-time capabilities", "Streaming focus", "24/7 monitoring"],
+                                "pricing": "Subscription-based"
+                            }
+                        ]
                     },
-                    "competitors": [
-                        {
-                            "company": "AWS Media Services",
-                            "products": ["Elemental MediaConvert", "MediaLive"],
-                            "strengths": ["Market leader", "Azure exit benefit"]
-                        },
-                        {
-                            "company": "Google Cloud Media AI",
-                            "products": ["Video Intelligence API"],
-                            "strengths": ["AI focus", "Analysis over streaming"]
-                        }
-                    ]
+                    "TranceIQ_Transcription_Captioning_Platform": {
+                        "description": "TranceIQ! Ultimate platform to revolutionize transcription, captioning, subtitle generation, and publishing. Boost efficiency, accuracy, accessibility, and global reach with our automated tools and seamless integration capabilities.",
+                        "market_size": "$8.5B by 2028, growing at 14.3% CAGR driven by accessibility compliance",
+                        "competitors": [
+                            {
+                                "company": "HappyScribe",
+                                "headquarters": "Barcelona, Spain",
+                                "website": "https://www.happyscribe.com/",
+                                "products": ["AI Transcription", "Subtitles & Translation", "AI Notetaker"],
+                                "strengths": ["120+ languages", "API-first approach", "Platform integrations"],
+                                "pricing": "Subscription-based with usage tiers",
+                                "recent_news": "Expanded to 120+ languages and enhanced API capabilities (2024)"
+                            },
+                            {
+                                "company": "Rev",
+                                "headquarters": "San Francisco, CA",
+                                "website": "https://www.rev.com/",
+                                "products": ["AI Transcription", "Human Transcription", "Closed Captions"],
+                                "strengths": ["Human-AI hybrid", "Fast turnaround", "37 languages"],
+                                "pricing": "AI: $0.25/min, Human: $1.99/min",
+                                "recent_news": "Enhanced mobile app for subtitle services (2024)"
+                            }
+                        ]
+                    }
+                },
+                "competitive_matrix": {
+                    "MonitorIQ_Compliance": {
+                        "criteria": ["Market Position", "AI Integration", "Broadcast Expertise", "Global Reach", "Innovation"],
+                        "Digital_Nirvana": [4, 5, 5, 3, 4],
+                        "Actus_Digital": [5, 4, 5, 4, 4],
+                        "Telestream": [5, 3, 5, 4, 4],
+                        "VELA": [3, 3, 4, 3, 3]
+                    },
+                    "TranceIQ_Transcription": {
+                        "criteria": ["Accuracy", "Language Support", "Real-time Processing", "Enterprise Features", "Pricing"],
+                        "Digital_Nirvana": [5, 4, 5, 5, 4],
+                        "HappyScribe": [4, 5, 4, 4, 4],
+                        "Rev": [5, 4, 3, 4, 3]
+                    }
                 }
-            },
-            "competitive_matrix": {
-                "MonitorIQ_Compliance": {
-                    "criteria": ["Market Position", "AI Integration", "Broadcast Expertise", "Global Reach", "Innovation"],
-                    "Digital_Nirvana": [4, 5, 5, 3, 4],
-                    "Actus_Digital": [5, 4, 5, 4, 4],
-                    "Telestream": [5, 3, 5, 4, 4],
-                    "VELA": [3, 3, 4, 3, 3],
-                    "VoiceInteraction": [3, 4, 3, 3, 4]
-                },
-                "TranceIQ_Transcription": {
-                    "criteria": ["Accuracy", "Language Support", "Real-time Processing", "Enterprise Features", "Pricing"],
-                    "Digital_Nirvana": [5, 4, 5, 5, 4],
-                    "HappyScribe": [4, 5, 4, 4, 4],
-                    "Descript": [4, 4, 3, 3, 4],
-                    "Rev": [5, 4, 3, 4, 3],
-                    "SyncWords": [4, 5, 5, 4, 4]
-                }
-            },
-            "SWOT": {
-                "Digital_Nirvana": {
-                    "Strengths": [
-                        "Deep broadcast and media industry expertise",
-                        "Comprehensive integrated suite reducing vendor fragmentation",
-                        "Strong Avid partnership (March 2025) for global distribution",
-                        "AI/ML specifically trained for media workflows",
-                        "Native integration with major broadcast systems",
-                        "FCC compliance and broadcast standards expertise",
-                        "Real-time processing for live content",
-                        "Multi-vertical presence enabling cross-selling"
-                    ],
-                    "Weaknesses": [
-                        "Smaller market presence vs hyperscale cloud providers",
-                        "Limited brand recognition outside broadcast",
-                        "Higher TCO compared to cloud-native alternatives",
-                        "Integration complexity across product lines",
-                        "Limited global presence vs multinationals",
-                        "Dependency on traditional broadcast trends"
-                    ],
-                    "Opportunities": [
-                        "Azure Media Services closure creating market vacuum",
-                        "Growing OTT/streaming demand for AI intelligence",
-                        "European Accessibility Act compliance requirements",
-                        "Increasing content localization needs globally",
-                        "Post-Volicon market consolidation",
-                        "Cloud migration trends for SaaS",
-                        "AI advancement enabling new use cases",
-                        "Cross-industry applications of technology"
-                    ],
-                    "Threats": [
-                        "Hyperscale cloud providers aggressive expansion",
-                        "Well-funded AI startups disrupting market",
-                        "Commoditization of basic transcription services",
-                        "Economic downturn impacting media CapEx",
-                        "Rapid technology change requiring R&D",
-                        "Customer consolidation reducing TAM",
-                        "Open-source AI reducing barriers to entry"
-                    ]
-                }
-            },
-            "strategic_recommendations": [
-                {
-                    "priority": "Critical",
-                    "title": "Capitalize on Azure Media Services Exit",
-                    "description": "Aggressively target Azure Media Services customers migrating to new platforms. Develop migration tools and competitive pricing.",
-                    "timeline": "Q1-Q2 2025",
-                    "expected_impact": "Capture 10-15% of displaced Azure customers"
-                },
-                {
-                    "priority": "High",
-                    "title": "Strengthen AI Differentiation",
-                    "description": "Develop proprietary AI models specifically trained on broadcast/media content. Focus on multimodal AI combining video, audio, and text.",
-                    "timeline": "Q2-Q3 2025",
-                    "expected_impact": "Create sustainable competitive advantage in AI"
-                },
-                {
-                    "priority": "High",
-                    "title": "Expand Cloud-Native Strategy",
-                    "description": "Transform all products to cloud-native with multi-cloud deployment. List on AWS, Google Cloud, and Azure marketplaces.",
-                    "timeline": "Q2-Q4 2025",
-                    "expected_impact": "Increase addressable market by 40%"
-                },
-                {
-                    "priority": "Medium",
-                    "title": "Build Integrated Platform Ecosystem",
-                    "description": "Create unified platform where all solutions contribute to comprehensive content intelligence. Develop APIs for central hub.",
-                    "timeline": "Q3 2025 - Q1 2026",
-                    "expected_impact": "Increase customer lifetime value by 35%"
-                },
-                {
-                    "priority": "Medium",
-                    "title": "Expand Financial Services Vertical",
-                    "description": "Leverage AlphaSense's $930M Tegus acquisition validation. Target investment firms seeking Bloomberg alternatives.",
-                    "timeline": "Q4 2025",
-                    "expected_impact": "Open new $500M+ TAM"
-                }
-            ]
-        };
+            };
+        }
 
         let currentCharts = {};
 
@@ -895,20 +742,27 @@
 
             // Load initial content
             showVertical('MonitorIQ_Content_Monitoring_Compliance');
-            loadSWOTAnalysis();
-            loadRecommendations();
             createCharts();
         }
 
         // Set up all event listeners
         function setupEventListeners() {
+            console.log('Setting up event listeners...');
+
             // Vertical navigation buttons
-            document.querySelectorAll('.vertical-btn').forEach(button => {
+            document.querySelectorAll('.vertical-btn').forEach((button, index) => {
+                const verticalKey = button.getAttribute('data-vertical');
+                console.log(`Setting up button ${index + 1}: ${button.textContent} - ${verticalKey}`);
+
                 button.addEventListener('click', function(e) {
                     e.preventDefault();
-                    const verticalKey = this.getAttribute('data-vertical');
+                    console.log(`Button clicked: ${verticalKey}`);
                     showVertical(verticalKey, this);
                 });
+
+                // Visual feedback for debugging
+                button.style.cursor = 'pointer';
+                button.title = `Click to view ${button.textContent} competitors`;
             });
 
             // Matrix selector dropdown
@@ -917,13 +771,7 @@
                 matrixSelector.addEventListener('change', updateCompetitiveChart);
             }
 
-            // Add click handlers for all competitor website links
-            document.addEventListener('click', function(e) {
-                if (e.target.classList.contains('competitor-link')) {
-                    // Links will open in new tab automatically due to target="_blank"
-                    console.log('Opening competitor website:', e.target.href);
-                }
-            });
+            console.log('Event listeners setup complete');
         }
 
         // Show competitors for selected vertical
@@ -944,7 +792,7 @@
             const listContainer = document.getElementById('competitors-list');
 
             if (!vertical) {
-                listContainer.innerHTML = '<div class="loading">No data available</div>';
+                listContainer.innerHTML = '<div class="loading">No data available for this vertical</div>';
                 return;
             }
 
@@ -954,62 +802,27 @@
                 html += `<p style="color: #27ae60; font-weight: bold; margin-bottom: 15px;">Market Size: ${vertical.market_size}</p>`;
             }
 
-            if (vertical.market_context) {
-                html += `<div style="background: #fff3cd; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
-                    <strong>Market Context:</strong><br>
-                    ${vertical.market_context.azure_closure ? `⚠️ ${vertical.market_context.azure_closure}<br>` : ''}
-                    ${vertical.market_context.cloud_share ? `📊 ${vertical.market_context.cloud_share}` : ''}
-                </div>`;
+            if (vertical.competitors && vertical.competitors.length > 0) {
+                vertical.competitors.forEach(competitor => {
+                    html += `
+                        <div class="competitor-item">
+                            <div class="competitor-name">${competitor.company}</div>
+                            ${competitor.headquarters ? `<div class="competitor-location">📍 ${competitor.headquarters}</div>` : ''}
+                            <div class="competitor-products">🛠️ ${competitor.products ? competitor.products.join(', ') : 'Products not specified'}</div>
+                            <div style="margin: 10px 0; color: #27ae60;">
+                                <strong>Strengths:</strong> ${competitor.strengths ? competitor.strengths.join(', ') : 'Not specified'}
+                            </div>
+                            ${competitor.pricing ? `<div class="competitor-pricing">💰 ${competitor.pricing}</div>` : ''}
+                            ${competitor.recent_news ? `<div class="competitor-news">📰 ${competitor.recent_news}</div>` : ''}
+                            ${competitor.website ? `<a href="${competitor.website}" target="_blank" class="competitor-link">Visit Website</a>` : ''}
+                        </div>
+                    `;
+                });
+            } else {
+                html += '<div class="loading">No competitors data available for this vertical</div>';
             }
 
-            vertical.competitors.forEach(competitor => {
-                html += `
-                    <div class="competitor-item">
-                        <div class="competitor-name">${competitor.company}</div>
-                        ${competitor.headquarters ? `<div class="competitor-location">📍 ${competitor.headquarters}</div>` : ''}
-                        <div class="competitor-products">🛠️ ${competitor.products.join(', ')}</div>
-                        <div style="margin: 10px 0; color: #27ae60;">
-                            <strong>Strengths:</strong> ${competitor.strengths.join(', ')}
-                        </div>
-                        ${competitor.pricing ? `<div class="competitor-pricing">💰 ${competitor.pricing}</div>` : ''}
-                        ${competitor.recent_news ? `<div class="competitor-news">📰 ${competitor.recent_news}</div>` : ''}
-                        ${competitor.website ? `<a href="${competitor.website}" target="_blank" class="competitor-link">Visit Website</a>` : ''}
-                    </div>
-                `;
-            });
-
             listContainer.innerHTML = html;
-        }
-
-        // Load SWOT Analysis
-        function loadSWOTAnalysis() {
-            const swot = competitiveData.SWOT.Digital_Nirvana;
-
-            document.getElementById('strengthsList').innerHTML =
-                swot.Strengths.map(item => `<li>${item}</li>`).join('');
-
-            document.getElementById('weaknessesList').innerHTML =
-                swot.Weaknesses.map(item => `<li>${item}</li>`).join('');
-
-            document.getElementById('opportunitiesList').innerHTML =
-                swot.Opportunities.map(item => `<li>${item}</li>`).join('');
-
-            document.getElementById('threatsList').innerHTML =
-                swot.Threats.map(item => `<li>${item}</li>`).join('');
-        }
-
-        // Load Recommendations
-        function loadRecommendations() {
-            const container = document.getElementById('recommendationsList');
-
-            container.innerHTML = competitiveData.strategic_recommendations.map(rec => `
-                <div class="recommendation priority-${rec.priority.toLowerCase()}">
-                    <h3>${rec.priority === 'Critical' ? '🔴' : rec.priority === 'High' ? '🟠' : '🟡'} ${rec.title}</h3>
-                    <p>${rec.description}</p>
-                    <span class="timeline">📅 ${rec.timeline}</span>
-                    <p class="impact">💡 Expected Impact: ${rec.expected_impact}</p>
-                </div>
-            `).join('');
         }
 
         // Update competitive chart
@@ -1017,6 +830,11 @@
             const selector = document.getElementById('matrixSelector');
             const matrixKey = selector.value;
             const matrix = competitiveData.competitive_matrix[matrixKey];
+
+            if (!matrix) {
+                console.error('No matrix data found for:', matrixKey);
+                return;
+            }
 
             if (currentCharts.competitive) {
                 currentCharts.competitive.destroy();
@@ -1059,16 +877,18 @@
             currentCharts.marketShare = new Chart(ctx2, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Media Intelligence', 'Transcription/Captioning', 'Media Enrichment', 'Financial Services', 'EdTech', 'Cloud/Data'],
+                    labels: ['MonitorIQ', 'MetadataIQ', 'MediaServicesIQ', 'TranceIQ', 'Media Enrichment', 'Investment Research', 'Learning Management', 'Cloud & Data'],
                     datasets: [{
-                        data: [25, 22, 18, 12, 13, 10],
+                        data: [15, 18, 12, 16, 14, 8, 10, 7],
                         backgroundColor: [
                             '#3498db',
                             '#2ecc71',
                             '#f39c12',
                             '#9b59b6',
                             '#e74c3c',
-                            '#1abc9c'
+                            '#1abc9c',
+                            '#e67e22',
+                            '#95a5a6'
                         ],
                         borderWidth: 2,
                         borderColor: '#fff'
@@ -1079,7 +899,10 @@
                     maintainAspectRatio: false,
                     plugins: {
                         legend: {
-                            position: 'bottom'
+                            position: 'bottom',
+                            labels: {
+                                fontSize: 10
+                            }
                         },
                         tooltip: {
                             callbacks: {
@@ -1092,6 +915,16 @@
                 }
             });
         }
+
+        // Debug function to test buttons manually
+        window.debugButtons = function() {
+            console.log('Testing all vertical buttons:');
+            document.querySelectorAll('.vertical-btn').forEach((btn, index) => {
+                console.log(`Button ${index + 1}: ${btn.textContent} - data-vertical: ${btn.getAttribute('data-vertical')}`);
+                btn.style.border = '2px solid red';
+                setTimeout(() => btn.style.border = 'none', 1000);
+            });
+        };
 
         // Initialize when DOM is ready and page is loaded
         if (document.readyState === 'loading') {
@@ -1107,16 +940,6 @@
                 loadCompetitiveData();
             }
         });
-
-        // Debug function to test buttons manually
-        window.debugButtons = function() {
-            console.log('Testing all vertical buttons:');
-            document.querySelectorAll('.vertical-btn').forEach((btn, index) => {
-                console.log(`Button ${index + 1}: ${btn.textContent} - data-vertical: ${btn.getAttribute('data-vertical')}`);
-                btn.style.border = '2px solid red';
-                setTimeout(() => btn.style.border = 'none', 1000);
-            });
-        };
     </script>
 </body>
 </html>

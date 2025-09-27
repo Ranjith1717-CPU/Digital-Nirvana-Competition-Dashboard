@@ -869,6 +869,45 @@
       "Descript": [4, 4, 3, 3, 4],
       "Rev": [5, 4, 3, 4, 3],
       "SyncWords": [4, 5, 5, 4, 4]
+    },
+    "MediaServicesIQ_Management": {
+      "criteria": ["Feature Richness", "Music Rights", "Content Optimization", "Integration", "Pricing"],
+      "Digital_Nirvana": [5, 5, 5, 5, 4],
+      "Synchtank": [4, 5, 3, 4, 3],
+      "Wowza": [4, 3, 4, 5, 4],
+      "Aquarius": [3, 4, 3, 3, 3]
+    },
+    "Media_Enrichment_Services": {
+      "criteria": ["Accessibility Features", "Language Coverage", "Compliance", "Quality", "Scalability"],
+      "Digital_Nirvana": [5, 4, 5, 5, 4],
+      "VITAC": [5, 4, 5, 5, 3],
+      "Verbit": [5, 5, 4, 5, 4],
+      "Ai_Media": [4, 4, 4, 4, 4],
+      "CaptionSync": [4, 3, 4, 4, 3]
+    },
+    "Investment_Research_Financial": {
+      "criteria": ["Data Quality", "Real-time Processing", "Analytics", "Enterprise Features", "Market Coverage"],
+      "Digital_Nirvana": [4, 5, 4, 5, 3],
+      "AlphaSense": [5, 4, 5, 5, 4],
+      "Sentieo": [4, 4, 5, 4, 4],
+      "Bloomberg": [5, 5, 5, 5, 5],
+      "Refinitiv": [5, 4, 5, 5, 5]
+    },
+    "Learning_Management_Academic": {
+      "criteria": ["AI Assessment", "Accessibility", "Integration", "Scalability", "User Experience"],
+      "Digital_Nirvana": [4, 5, 4, 4, 4],
+      "Gradescope": [5, 3, 5, 5, 5],
+      "Turnitin": [4, 4, 5, 5, 4],
+      "Blackboard": [3, 4, 5, 5, 3],
+      "Canvas": [3, 4, 5, 5, 4]
+    },
+    "Cloud_Engineering_Data": {
+      "criteria": ["AI/ML Capabilities", "Data Processing", "Cloud Integration", "Enterprise Features", "Performance"],
+      "Digital_Nirvana": [4, 5, 4, 5, 4],
+      "AWS_Media_Services": [4, 5, 5, 5, 5],
+      "Google_Cloud_AI": [5, 5, 5, 4, 5],
+      "Azure_Cognitive": [4, 4, 5, 5, 4],
+      "Databricks": [5, 5, 4, 4, 4]
     }
   },
   "SWOT": {
