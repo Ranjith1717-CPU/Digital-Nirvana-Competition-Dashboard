@@ -146,11 +146,45 @@
             cursor: pointer;
             font-size: 0.9em;
             transition: all 0.3s ease;
+            user-select: none;
+            outline: none;
+            position: relative;
+            overflow: hidden;
         }
 
-        .vertical-btn:hover, .vertical-btn.active {
+        .vertical-btn:hover {
             background: #2980b9;
             transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+        }
+
+        .vertical-btn.active {
+            background: #2c3e50;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(44, 62, 80, 0.4);
+        }
+
+        .vertical-btn:active {
+            transform: scale(0.98);
+            transition: transform 0.1s ease;
+        }
+
+        .vertical-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .vertical-btn:active::before {
+            width: 300px;
+            height: 300px;
         }
 
         .competitor-list {
@@ -210,15 +244,30 @@
             margin-top: 8px;
             padding: 5px 12px;
             background: #3498db;
-            color: white;
+            color: white !important;
             text-decoration: none;
             border-radius: 15px;
             font-size: 0.8em;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            user-select: none;
         }
 
         .competitor-link:hover {
             background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+        }
+
+        .competitor-link:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(52, 152, 219, 0.2);
+        }
+
+        .competitor-link:visited {
+            color: white !important;
         }
 
         .chart-container {
@@ -388,12 +437,12 @@
             <div class="card">
                 <h2>📊 Market Verticals</h2>
                 <div class="vertical-nav">
-                    <button class="vertical-btn active" onclick="showVertical('AI_Powered_Media_Intelligence', this)">Media Intelligence</button>
-                    <button class="vertical-btn" onclick="showVertical('AI_Powered_Transcription_Captioning', this)">Transcription/Captioning</button>
-                    <button class="vertical-btn" onclick="showVertical('Media_Enrichment_Services', this)">Media Enrichment</button>
-                    <button class="vertical-btn" onclick="showVertical('Financial_Services_Investment_Research', this)">Financial Services</button>
-                    <button class="vertical-btn" onclick="showVertical('Educational_Technology_Solutions', this)">EdTech</button>
-                    <button class="vertical-btn" onclick="showVertical('Cloud_Engineering_Data_Intelligence', this)">Cloud/Data</button>
+                    <button class="vertical-btn active" data-vertical="AI_Powered_Media_Intelligence">Media Intelligence</button>
+                    <button class="vertical-btn" data-vertical="AI_Powered_Transcription_Captioning">Transcription/Captioning</button>
+                    <button class="vertical-btn" data-vertical="Media_Enrichment_Services">Media Enrichment</button>
+                    <button class="vertical-btn" data-vertical="Financial_Services_Investment_Research">Financial Services</button>
+                    <button class="vertical-btn" data-vertical="Educational_Technology_Solutions">EdTech</button>
+                    <button class="vertical-btn" data-vertical="Cloud_Engineering_Data_Intelligence">Cloud/Data</button>
                 </div>
                 <div id="competitors-list" class="competitor-list">
                     <div class="loading">Loading competitors...</div>
@@ -403,7 +452,7 @@
             <!-- Competitive Matrix Chart -->
             <div class="card">
                 <h2>⚔️ Competitive Matrix</h2>
-                <select id="matrixSelector" onchange="updateCompetitiveChart()" style="margin-bottom: 15px; padding: 5px; border-radius: 5px;">
+                <select id="matrixSelector" style="margin-bottom: 15px; padding: 5px; border-radius: 5px;">
                     <option value="AI_Media_Intelligence">AI Media Intelligence</option>
                     <option value="Transcription_Captioning">Transcription & Captioning</option>
                 </select>
@@ -798,21 +847,54 @@
                 console.error('No competitive data available');
                 return;
             }
+
+            // Set up event listeners for all interactive elements
+            setupEventListeners();
+
+            // Load initial content
             showVertical('AI_Powered_Media_Intelligence');
             loadSWOTAnalysis();
             loadRecommendations();
             createCharts();
         }
 
+        // Set up all event listeners
+        function setupEventListeners() {
+            // Vertical navigation buttons
+            document.querySelectorAll('.vertical-btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const verticalKey = this.getAttribute('data-vertical');
+                    showVertical(verticalKey, this);
+                });
+            });
+
+            // Matrix selector dropdown
+            const matrixSelector = document.getElementById('matrixSelector');
+            if (matrixSelector) {
+                matrixSelector.addEventListener('change', updateCompetitiveChart);
+            }
+
+            // Add click handlers for all competitor website links
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('competitor-link')) {
+                    // Links will open in new tab automatically due to target="_blank"
+                    console.log('Opening competitor website:', e.target.href);
+                }
+            });
+        }
+
         // Show competitors for selected vertical
         function showVertical(verticalKey, clickedButton) {
+            console.log('Showing vertical:', verticalKey);
+
             // Update active button
             document.querySelectorAll('.vertical-btn').forEach(btn => btn.classList.remove('active'));
             if (clickedButton) {
                 clickedButton.classList.add('active');
             } else {
                 // Find button by vertical key for initial load
-                const button = document.querySelector(`[onclick*="${verticalKey}"]`);
+                const button = document.querySelector(`[data-vertical="${verticalKey}"]`);
                 if (button) button.classList.add('active');
             }
 
@@ -969,8 +1051,30 @@
             });
         }
 
-        // Initialize on page load
-        window.addEventListener('load', loadCompetitiveData);
+        // Initialize when DOM is ready and page is loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadCompetitiveData);
+        } else {
+            loadCompetitiveData();
+        }
+
+        // Backup initialization on window load
+        window.addEventListener('load', function() {
+            if (!competitiveData) {
+                console.log('Backup initialization triggered');
+                loadCompetitiveData();
+            }
+        });
+
+        // Debug function to test buttons manually
+        window.debugButtons = function() {
+            console.log('Testing all vertical buttons:');
+            document.querySelectorAll('.vertical-btn').forEach((btn, index) => {
+                console.log(`Button ${index + 1}: ${btn.textContent} - data-vertical: ${btn.getAttribute('data-vertical')}`);
+                btn.style.border = '2px solid red';
+                setTimeout(() => btn.style.border = 'none', 1000);
+            });
+        };
     </script>
 </body>
 </html>
