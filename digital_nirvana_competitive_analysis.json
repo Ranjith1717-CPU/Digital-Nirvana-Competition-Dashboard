@@ -1,5 +1,5 @@
 {
-  "analysis_date": "2025-01-27",
+  "analysis_date": "2025-10-08",
   "analyst": "Claude Code Market Research Assistant",
   "company": "Digital Nirvana",
   "executive_summary": {
@@ -1028,7 +1028,7 @@
   },
   "recent_features": {
     "timeline_months": 6,
-    "last_updated": "2025-09-27",
+    "last_updated": "2025-10-08",
     "features_by_vertical": {
       "MonitorIQ_Content_Monitoring_Compliance": [
         {
@@ -1354,8 +1354,8 @@
   ],
   "analysis_methodology": {
     "data_sources": "Real-time web search, company websites, industry reports, analyst research",
-    "timeframe": "Current market conditions as of January 2025",
+    "timeframe": "Current market conditions as of October 2025",
     "limitations": "Pricing information varies by customer size, private company data limited",
-    "last_updated": "January 27, 2025"
+    "last_updated": "October 8, 2025"
   }
 }
