@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Billing App - वॉयस बिलिंग ऐप</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎤 Voice Billing App</h1>
+            <p>बोलकर बिल बनाएं - Speak to Create Bills</p>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab active" onclick="showTab('billing')">📋 Billing</button>
+            <button class="tab" onclick="showTab('dashboard')">📊 Dashboard</button>
+            <button class="tab" onclick="showTab('settings')">⚙️ Settings</button>
+        </nav>
+
+        <!-- Billing Tab -->
+        <div id="billing" class="tab-content active">
+            <div class="voice-section">
+                <button id="startListening" class="voice-btn">
+                    🎤 Start Speaking / बोलना शुरू करें
+                </button>
+                <div id="voiceStatus" class="status">Ready to listen...</div>
+                <div id="transcript" class="transcript"></div>
+            </div>
+
+            <div class="language-selector">
+                <label>Language / भाषा:</label>
+                <select id="languageSelect">
+                    <option value="hi-IN">Hindi - हिंदी</option>
+                    <option value="en-IN">English - अंग्रेजी</option>
+                    <option value="ta-IN">Tamil - தமிழ்</option>
+                    <option value="te-IN">Telugu - తెలుగు</option>
+                    <option value="bn-IN">Bengali - বাংলা</option>
+                    <option value="mr-IN">Marathi - मराठी</option>
+                </select>
+            </div>
+
+            <div class="current-bill">
+                <h3>Current Bill / वर्तमान बिल</h3>
+                <div id="billItems" class="bill-items"></div>
+                <div class="bill-total">
+                    <strong>Total: ₹<span id="billTotal">0</span></strong>
+                </div>
+                <div class="bill-actions">
+                    <button onclick="saveBill()">Save Bill / बिल सेव करें</button>
+                    <button onclick="clearBill()">Clear / साफ़ करें</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content">
+            <h3>Monthly Dashboard / मासिक डैशबोर्ड</h3>
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <h4>Today's Sales</h4>
+                    <div class="stat-value">₹<span id="todaySales">0</span></div>
+                </div>
+                <div class="stat-card">
+                    <h4>This Month</h4>
+                    <div class="stat-value">₹<span id="monthSales">0</span></div>
+                </div>
+                <div class="stat-card">
+                    <h4>Total Bills</h4>
+                    <div class="stat-value"><span id="totalBills">0</span></div>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="salesChart" width="400" height="200"></canvas>
+            </div>
+            <div class="recent-bills">
+                <h4>Recent Bills / हाल के बिल</h4>
+                <div id="recentBillsList"></div>
+            </div>
+        </div>
+
+        <!-- Settings Tab -->
+        <div id="settings" class="tab-content">
+            <h3>Settings / सेटिंग्स</h3>
+            <div class="setting-group">
+                <label>Shop Name / दुकान का नाम:</label>
+                <input type="text" id="shopName" placeholder="Enter shop name">
+            </div>
+            <div class="setting-group">
+                <label>Owner Name / मालिक का नाम:</label>
+                <input type="text" id="ownerName" placeholder="Enter owner name">
+            </div>
+            <div class="setting-group">
+                <label>Phone / फ़ोन:</label>
+                <input type="tel" id="phoneNumber" placeholder="Enter phone number">
+            </div>
+            <button onclick="saveSettings()">Save Settings / सेटिंग्स सेव करें</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
